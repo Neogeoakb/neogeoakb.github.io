@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /tag
+Allow: /tag/me
+
+Sitemap: http://fercho.akb.soy/sitemap.xml

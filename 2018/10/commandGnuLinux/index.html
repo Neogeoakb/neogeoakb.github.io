@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Comandos prácticos en GnuLinux 🐃🐧</title>
+
+  <meta name="description" content="Curioso Informático | Ethical Hacking | GnuLinux | Infraestructura | Ciberseguridad - Soy AkB | HappyHacking | Akb Kompany" />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+<link href="../../../2018/10/commandGnuLinux/" rel="canonical" />
+  <!-- Feed -->
+
+  <link rel="stylesheet" type="text/css" href="../../../theme/css/style.css">
+
+  <!-- CSS specified by the user -->
+
+
+  <link href="../../../assets/css/myblog.css" type="text/css" rel="stylesheet" />
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <script>
+    var siteUrl = '../../..';
+  </script>
+
+  <script>
+    var localTheme = localStorage.getItem('attila_theme');
+    switch (localTheme) {
+      case 'dark':
+        document.documentElement.classList.add('theme-dark');
+        break;
+      case 'light':
+        document.documentElement.classList.add('theme-light');
+        break;
+      default:
+        break;
+    }
+  </script>
+
+
+
+
+
+
+
+    <meta name="description" content="Listado de comandos de uso práctico en GnuLinux 😎💻">
+
+    <meta name="author" content="fercho">
+
+    <meta name="tags" content="terminal">
+    <meta name="tags" content="gnulinux">
+    <meta name="tags" content="fedora">
+
+
+
+
+<!-- Open Graph -->
+<meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="Blog | AkB"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:title" content="Comandos prácticos en GnuLinux 🐃🐧"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:description" content="Listado de comandos de uso práctico en GnuLinux 😎💻"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:locale" content="en_US"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:url" content="../../../2018/10/commandGnuLinux/"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:type" content="article"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:published_time" content="2018-10-14 00:00:00-05:00"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:modified_time" content="2025-03-21 02:18:32.930714-05:00"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:author" content="../../../author/fercho/">
+<meta prefix="og: http://ogp.me/ns#" property="article:section" content="gnu-linux"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:tag" content="terminal"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:tag" content="gnulinux"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:tag" content="fedora"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:image" content="../../../theme/images/home-bg.jpg">
+
+<!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@neogeoakb">
+    <meta name="twitter:title" content="Comandos prácticos en GnuLinux 🐃🐧">
+    <meta name="twitter:url" content="../../../2018/10/commandGnuLinux/">
+
+        <meta name="twitter:image:src" content="../../../theme/images/home-bg.jpg">
+
+      <meta name="twitter:description" content="Listado de comandos de uso práctico en GnuLinux 😎💻">
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "Comandos prácticos en GnuLinux 🐃🐧",
+  "headline": "Comandos prácticos en GnuLinux 🐃🐧",
+  "datePublished": "2018-10-14 00:00:00-05:00",
+  "dateModified": "2025-03-21 02:18:32.930714-05:00",
+  "author": {
+    "@type": "Person",
+    "name": "Fercho",
+    "url": "../../../author/fercho/"
+  },
+  "image": "../../../theme/images/post-bg.jpg",
+  "url": "../../../2018/10/commandGnuLinux/",
+  "description": "Listado de comandos de uso práctico en GnuLinux 😎💻"
+}
+</script>
+</head>
+
+
+
+
+
+
+
+
+
+<body class="category-template">
+
+<div class="nav-header">
+  <nav class="nav-wrapper" aria-label="Main">
+<ul>
+
+    <li class="nav-Inicio " role="presentation"><a href="/"><span>Inicio</span></a></li>
+    <li class="nav-Archivo " role="presentation"><a href="/archive/"><span>Archivo</span></a></li>
+    <li class="nav-Tags " role="presentation"><a href="/tag/"><span>Tags</span></a></li>
+    <li class="nav-About " role="presentation"><a href="/pages/about-site/"><span>About</span></a></li>
+    <li class="nav-Akb Kompany " role="presentation"><a href="https://kompany.work"><span>Akb Kompany</span></a></li>
+    <li class="nav-NFT Latino XYZ " role="presentation"><a href="https://nftlatino.xyz"><span>NFT Latino XYZ</span></a></li>
+
+</ul>
+<ul class="nav-meta">
+    <li class="nav-linkedin"><a aria-label="Linkedin" href="https://www.linkedin.com/in/soyakb" target="_blank"><i class="icon icon-linkedin" aria-hidden="true"></i>
+    <span>Linkedin</span>
+    </a></li>
+    <li class="nav-twitter"><a aria-label="Twitter" href="https://twitter.com/neogeoakb" target="_blank"><i class="icon icon-twitter" aria-hidden="true"></i>
+    <span>Twitter</span>
+    </a></li>
+    <li class="nav-github"><a aria-label="Github" href="https://github.com/neogeoakb" target="_blank"><i class="icon icon-github" aria-hidden="true"></i>
+    <span>Github</span>
+    </a></li>
+  <li class="nav-search" style="display: none;">
+    <a title="Search">
+      <i class="icon icon-search" aria-hidden="true"></i>
+      <span>Search</span>
+    </a>
+  </li>
+</ul>  </nav>
+
+  <div class="nav-wrapper-control">
+    <div class="inner">
+      <a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+      <a class="nav-search" title="Search" role="button" style="display: none;"><i class="icon icon-search" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</div>
+<div class="nav-close" role="button" aria-label="Close"></div>
+  <section id="wrapper" class="page-wrapper">
+    <!-- Progressbar -->
+    <div class="progress-container">
+      <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="post-header ">
+      <div class="inner">
+        <span class="post-info">
+          <span class="post-type">Article</span>
+          <span class="post-count">Gnu-Linux</span>
+        </span>
+        <h1 class="post-title">Comandos prácticos en GnuLinux 🐃🐧</h1>
+        <div class="post-meta">
+          <div class="post-meta-avatars">
+
+
+            <figure class="post-meta-avatar avatar">
+              <a class="author-avatar" href="../../../author/fercho/">
+                <img class="author-profile-image" src="../../../assets/images/perfil_RS.jpeg" alt="Fernando Arias" />
+              </a>
+            </figure>
+          </div>
+
+          <h4 class="post-meta-author">
+            Fernando Arias
+          </h4>
+          <time datetime="14 Oct 2018">14 Oct 2018</time>
+          &bull; 4 min read
+        </div>
+      </div>
+    </header>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+          <section class="post-content">
+            <p>Como lo prometido es deuda, pongo a su disposición una lista de comandos prácticos para la consola de GnuLinux.<br>
+Mi idea no es detallar la funcionalidad de cada comando, sino mostrar una lista practica de los comandos 
+que he recopilado durante mi experiencia de uso del Sistema Operativo.</p>
+<p>Para detallar que hace cada comando podemos hacer uso de los <strong>man-page</strong> propios de cada comando utilizando:<br>
+man <em>comando</em></p>
+<h2>ps</h2>
+<h4>Para ver los procesos que ocupan más memoria</h4>
+<p><code>ps aux | awk '{print $2, $4, $11}' | sort -k2r | head -n 15</code></p>
+<h4>Para sumar la memoria total de todos los procesos httpd</h4>
+<p><code>ps aux | awk '/httpd/ {sum+=$6} END {printf "%dMB\n", sum/1024}'</code></p>
+<h4>Matar un proceso determinado.</h4>
+<p><code>ps aux | grep &lt;something&gt; | awk '{print $2}' | xargs kill</code></p>
+<h4>Matar los procesos de un determinado usuario.</h4>
+<p><code>ps -o pid -u nombreUsuario | xargs kill -1</code></p>
+<hr>
+<h2>du</h2>
+<h4>Para visualizar el tamaño por sumatoria de un determinado directorio</h4>
+<p><code>du -sh /home</code></p>
+<h4>Para visualizar el tamaño de las carpetas de la Raíz "/" excepción carpetas del sistema</h4>
+<p><code>du --max-depth=1 -hx /</code></p>
+<h4>Para filtrar directorios que tengan mayor a un tamaño indicado</h4>
+<p><code>du -h /var/www | awk '$10 ~ ".*M.*" {print $2}'</code></p>
+<hr>
+<h2>sort</h2>
+<h4>Ordenación de mayor a menor Usuarios por uid:</h4>
+<p><code>cat /etc/passwd| sort -t":" -k3nr</code></p>
+<hr>
+<h2>grep</h2>
+<h4>Búsqueda de una fecha específica en los logs de PHP</h4>
+<p><code>grep -E '16-Jun-2015|17-Jun-2015' /var/log/php-errors.log</code></p>
+<h4>Busquedas recursivas</h4>
+<p><code>grep -R -i -n 'Keyring' * -R</code></p>
+<h4>Para copiar los archivos de determinada extensión que coinciden con una búsqueda</h4>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>--include<span class="w"> </span><span class="s1">&#39;*.akb&#39;</span><span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;tcpdump&#39;</span><span class="w"> </span>*<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f1<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>cp<span class="w"> </span>-vt<span class="w"> </span>/tmp/temporal01/
+</code></pre></div>
+
+<p>Lo mismo, pero con el comando find:  </p>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.akb&#39;</span><span class="w"> </span>-exec<span class="w"> </span>grep<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;tcpdump&#39;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f1<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>cp<span class="w"> </span>-vt<span class="w"> </span>/tmp/temporal01/
+</code></pre></div>
+
+<hr>
+<h2>less</h2>
+<h4>Conservar el resalte de las búsquedas:</h4>
+<p><code>grep --color=always -i script *html | less -r</code></p>
+<hr>
+<h2>sed</h2>
+<h4>Para visualizar archivos de configuración sin comentarios (#) y sin espacios.</h4>
+<p><code>cat archivo.conf | grep -v -E '^#' | sed -e '/^$/d'</code></p>
+<hr>
+<h2>awk</h2>
+<h4>Para imprimir determinada linea de un documento:</h4>
+<p><code>awk "NR==3" nombreArchivo.txt</code></p>
+<hr>
+<h2>tr</h2>
+<h4>Reemplazar las Comillas (") por un Espacio en Blanco, y los punto y comas por el carácter de Tabulación (\t).</h4>
+<p><code>echo '"Juan";"Pepe";' | tr '";' ' \t'</code>  </p>
+<blockquote>
+<p>Útil para trabajar con Archivos CSV.  </p>
+</blockquote>
+<hr>
+<h2>ls</h2>
+<h4>Para mostrar los directorios con el "/"</h4>
+<p><code>ls -F</code><br>
+<a href="https://unix.stackexchange.com/questions/146802/the-f-option-for-ls">Referencia ls option F</a></p>
+<h4>Para listar directorios</h4>
+<p><code>ls -d */</code></p>
+<h4>Para listar subdirectorios</h4>
+<p><code>ls -d */*/</code>  </p>
+<blockquote>
+<p>Si necesitamos seguir profundizando añadimos <code>*/</code></p>
+</blockquote>
+<h4>Para mostrar directorios ocultos</h4>
+<p><code>ls -d .*/</code><br>
+<a href="http://blockdeubuntu.blogspot.com/2008/12/cmo-listar-slo-directorios-en-el.html">Referencia ls option d</a></p>
+<h4>Obtener un listado de los ficheros del directorio actual, ordenado de mayor a menor por tamaño de archivo</h4>
+<p><code>ls -l | sort -r +4n</code></p>
+<h4>Para listar determinados archivos ordenados por el tamaño de los mismos</h4>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-al<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;*.txt|*.log|*.glf|*.hprof|log.bo*|*.trc&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span>-r<span class="w"> </span>-k<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>more
+</code></pre></div>
+
+<hr>
+<h2>cp</h2>
+<h4>Copiar Archivos desde un listado txt</h4>
+<p>Para copiar un listado de archivos que se encuentran en un archivo txt, sin necesidad de conservar los permisos:<br>
+<code>cat listadoArchivosCommit.txt | xargs cp -vt /tmp/TestCopia</code></p>
+<p>Para copiar archivos que están en un listado, pero conservando los permisos:  </p>
+<div class="highlight"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>line<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>cp<span class="w"> </span>-vrp<span class="w"> </span><span class="nv">$line</span><span class="w"> </span>../akb_mkdocs/<span class="nv">$line</span><span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="w"> </span>&lt;<span class="w"> </span>listadoArchivosCommit.tmp
+</code></pre></div>
+
+<hr>
+<h2>mv</h2>
+<h4>Para mover Archivos desde un listado txt</h4>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>cat<span class="w"> </span>listoffiles<span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>mv<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span><span class="w"> </span>/path/de/destino<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</code></pre></div>
+
+<p><code>xargs -a file_list.txt mv -t /path/de/destino</code></p>
+<h4>Para renombrar archivos cuyo nombre contengan espacios en blanco</h4>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>FILE<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.wav<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nv">NEWFILE</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$FILE</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/ /_/g&#39;</span><span class="sb">`</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>mv<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="nv">$NEWFILE</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</code></pre></div>
+
+<hr>
+<h2>find</h2>
+<p>Comando utilizado para buscar archivos en GnuLinux, 
+existen distintas variantes del mismo para realizar diferentes tareas:</p>
+<h4>Para buscar algun archivo utilizando parámetros de nombre y con texto en particular</h4>
+<p><code>find ./ -type f -name '*.doc*' | grep -i project</code></p>
+<h4>Para Cambiar los permisos de SOLO los DIRECTORIOS de un sitio en especifico</h4>
+<p><code>find ./certificate -type d -exec chmod 0750 {} \;</code></p>
+<h4>Para Cambiar los permisos de SOLO los ARCHIVOS de un sitio en especifico</h4>
+<p><code>find ./certificate ! -type d -exec chmod 0640 {} \;</code></p>
+<h4>Para Borrar los archivos con algun parámetro especial de búsqueda</h4>
+<p><code>find ./ -name '*06162015*' -exec rm -rf {} \;</code></p>
+<h4>Para listar los archivos que fueron creados desde hace 30 días</h4>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>./<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-mmin<span class="w"> </span>-43200<span class="w"> </span>-exec<span class="w"> </span>ls<span class="w"> </span>-lt<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span><span class="w"> </span><span class="sb">`</span><span class="w"> </span>**<span class="w"> </span>Archivos<span class="w"> </span>menores<span class="w"> </span>a<span class="w"> </span><span class="m">30</span><span class="w"> </span>Dias<span class="w"> </span>**<span class="w"> </span><span class="sb">`</span><span class="o">(</span><span class="m">30</span>*<span class="o">(</span><span class="m">24</span>*60<span class="o">))</span>
+</code></pre></div>
+
+<h4>Para copiar determinados archivos hacia otro directorio utilizando <strong>cp</strong></h4>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>./<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-mmin<span class="w"> </span>-43200<span class="w"> </span>-exec<span class="w"> </span>/usr/bin/cp<span class="w"> </span>-rp<span class="w"> </span><span class="o">{}</span><span class="w"> </span>../tmp/<span class="w"> </span><span class="se">\;</span>
+</code></pre></div>
+
+<h4>Para eliminar los backups con más de 02 dias (48 horas)</h4>
+<p><code>find . -mtime +1 -delete</code></p>
+<h4>Para mostrar o listar los directorios vacíos a partir del directorio actual.</h4>
+<p><code>find . -empty -type d</code>  </p>
+<h4>Para contar los archivos pero solo en carpetas dos niveles por debajo</h4>
+<p><code>find . -maxdepth 2 -type f | wc -l</code></p>
+<h4>Para contar archivos de forma recursiva ilimitada</h4>
+<p><code>find . -type f | wc -l</code></p>
+<h4>Para contar directorios de forma recursiva ilimitada</h4>
+<p><code>find . -type d | wc -l</code></p>
+<h4>Para contar enlaces de forma recursiva ilimitada</h4>
+<p><code>find . -type l | wc -l</code></p>
+<h4>Para contar archivos y carpetas de forma recursiva</h4>
+<p><code>find . | wc -l</code></p>
+<h4>Para contar archivos con una extensión determinada</h4>
+<p><code>find . -type f -iname “*.php” | wc -l</code></p>
+<h4>Para listar archivos ocultos de determinado directorio</h4>
+<p><code>find . -type d -iname ".*" -ls</code></p>
+<h4>Para cambiar texto dentro de algún tipo de archivo en particular</h4>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>/test/<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.txt&quot;</span><span class="w"> </span>-print<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/SYSADMIT/--SYSADMIT--/g&quot;</span>
+</code></pre></div>
+
+<h4>Para buscar archivos mayores a 1024MB</h4>
+<p><code>find ./ -size +1024M -exec /bin/du -sh {} \;</code></p>
+<p><a href="http://unix.stackexchange.com/questions/92346/why-does-find-mtime-1-only-return-files-older-than-2-days">unix_stackexchange_find</a><br>
+<a href="https://www.pedroventura.com/linux/contar-todos-los-archivos-existente-en-un-directorio-en-linux/">Contar_Files_Con_Find</a><br>
+<a href="http://www.sysadmit.com/2015/07/linux-reemplazar-texto-en-archivos-con-sed.html">Find_con_sed</a>  </p>
+<hr>
+<h2>curl</h2>
+<h4>Para resumir las descargas a través de curl</h4>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ec</span><span class="o">=</span><span class="m">18</span><span class="p">;</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$ec</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>/usr/bin/curl<span class="w"> </span>-O<span class="w"> </span>-C<span class="w"> </span>-<span class="w"> </span><span class="s2">&quot;http://www.example.com/big-archive.zip&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">ec</span><span class="o">=</span><span class="nv">$?</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</code></pre></div>
+
+<hr>
+<h2>ln</h2>
+<h4>Crear enlace simbólico</h4>
+<p><code>ln origen destino</code><br>
+<code>sudo ln -s /usr/bin/csvlook-3.5 /usr/bin/csvlook</code>  </p>
+<hr>
+<h2>isoinfo</h2>
+<h4>Para montar imagen Linux si solo quieres listar su contenido.</h4>
+<p><code>ìsoinfo -l -i imagen.iso</code></p>
+<hr>
+<p>Al presente listado hacen falta muchos más comandos... pero eso es lo bonito de GnuLinux, 
+que nunca terminamos de aprender si puedes recomendar algún comando útil que haga falta 
+a este listado agrégalo en los comentarios.</p>
+<p>Espero sea útil este tipo de post. Agradezco su tiempo de lectura 😃</p>
+          </section>
+
+
+          <section class="post-footer" >
+            <div class="post-share">
+              <span class="post-info-label">Share</span>
+              <a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=Comandos prácticos en GnuLinux 🐃🐧&amp;url=../../../2018/10/commandGnuLinux/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="icon icon-twitter" aria-hidden="true"></i><span class="hidden">Twitter</span>
+              </a>
+              <a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=../../../2018/10/commandGnuLinux/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                <i class="icon icon-facebook" aria-hidden="true"></i><span class="hidden">Facebook</span>
+              </a>
+              <a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=../../../2018/10/commandGnuLinux/&amp;title=Comandos prácticos en GnuLinux 🐃🐧" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+                <i class="icon icon-linkedin" aria-hidden="true"></i><span class="hidden">LinkedIn</span>
+              </a>
+              <a title="Email" aria-label="Email" class="email" href="mailto:?subject=Comandos prácticos en GnuLinux 🐃🐧&amp;body=../../../2018/10/commandGnuLinux/">
+                <i class="icon icon-mail" aria-hidden="true"></i><span class="hidden">Email</span>
+              </a>
+              <div class="clear"></div>
+            </div>
+
+            <aside class="post-tags">
+<a href="../../../tag/terminal/">terminal</a><a href="../../../tag/gnulinux/">gnulinux</a><a href="../../../tag/fedora/">fedora</a>            </aside>
+
+            <div class="clear"></div>
+
+
+          </section>
+
+          <script type="text/javascript">
+            var disqus = 'neogeoakb';
+            var disqus_shortname = 'neogeoakb';
+            var disqus_identifier = 'commandGnuLinux';
+            var disqus_url = '../../../2018/10/commandGnuLinux/';
+          </script>
+          <noscript>Please enable JavaScript to view the comments.</noscript>
+          <section class="post-comments">
+              <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="commandGnuLinux" >Show Comments</a>
+            <div id="disqus_thread"></div>
+          </section>
+
+          <aside class="post-nav">
+            <a class="post-nav-next" href="../../../2018/12/vncserver/">
+              <section class="post-nav-teaser">
+                <i class="icon icon-arrow-left"></i>
+                  <h2 class="post-nav-title">Acceso Remoto en GnuLinux a través de VNC 💻</h2>
+                <p class="post-nav-excerpt">Trabajando con VNC Server y x11vnc para permitir el acceso remoto a una sesión abierta. 💻</p>
+                <p class="post-nav-meta"><time datetime="02 Dec 2018">02 Dec 2018</time></p>
+              </section>
+            </a>
+            <a class="post-nav-prev" href="../../../2018/10/helloWorldv2.0/">
+              <section class="post-nav-teaser">
+                <i class="icon icon-arrow-right"></i>
+                  <h2 class="post-nav-title">Hola Mundo 2.0 😉👋</h2>
+                <p class="post-nav-excerpt">De vuelta al Blog! 😊</p>
+                <p class="post-nav-meta"><time datetime="04 Oct 2018">04 Oct 2018</time></p>
+              </section>
+            </a>
+            <div class="clear"></div>
+          </aside>
+
+        </div>
+      </article>
+    </main>
+    <div class="nav-footer">
+      <nav class="nav-wrapper" aria-label="Footer">
+        <span class="nav-copy">Blog | AkB &copy; 2023
+        </span>
+        <span class="nav-credits">
+
+
+
+          Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a> &bull; Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a> &bull;
+          <a class="menu-item js-theme" href="#" data-system="System theme" data-dark="Dark theme" data-light="Light theme">
+            <span class="theme-icon"></span><span class="theme-text">System theme</span>
+          </a>
+        </span>
+      </nav>
+    </div>
+
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script type="text/javascript" src="../../../theme/js/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="../../../theme/js/script.js"></script>
+
+<script type="text/javascript">
+    var disqus_shortname = 'neogeoakb';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+  <!-- 	The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in article.html, but it needs to be included down here, after jQuery has already loaded. -->
+
+<!-- Add MathJax and FontAwesome for Asciidoc -->\
+<script>
+  $(document).ready(function () {
+    var viewport = $(window);
+    var post = $('.post-content');
+    // Responsive videos with fitVids
+    post.fitVids();
+
+    var mdSelector=".highlight pre";
+    var rstSelector=".highlight pre";
+    // For ":source-highlighter: highlight.js`" in asciidoc
+    var adocSelector="pre.highlight > code[data-lang]"
+    var selector=mdSelector;
+    // Format code blocks and add line numbers
+    function codestyling() {
+      $(selector).each(function(i, e) {
+        // Code highlight
+        hljs.highlightElement(e);
+        // No lines for plain text blocks
+        if (!$(this).hasClass('language-text')) {
+          var code = $(this);
+          // Calculate amount of lines
+          var lines = code.html().split(/\n(?!$)/g).length;
+          var numbers = [];
+          if (lines > 1) {
+            lines++;
+          }
+          for (i = 1; i < lines; i++) {
+            numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+          }
+          code.parent().append('<div class="lines">' + numbers + '</div>');
+        }
+      });
+    }
+
+    // Format code blocks only
+    function codestylingWithoutLineNumbers() {
+      $(selector).each(function(i, e) {
+        // Code highlight
+        hljs.highlightElement(e);
+      });
+    }
+
+    codestylingWithoutLineNumbers();
+    // Reading progress bar on window top
+    function readingProgress() {
+      var postBottom = post.offset().top + post.height();
+      var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+    }
+    readingProgress();
+    // Trigger reading progress
+    viewport.on({
+      'scroll': function() {
+        readingProgress();
+      },
+      'resize': function() {
+        readingProgress();
+      },
+      'orientationchange': function() {
+        readingProgress();
+      }
+    });
+
+      var disqus = 'neogeoakb';
+      $('#show-disqus').on('click', function() {
+        $.ajax({
+          type: "GET",
+          url: "//" + disqus + ".disqus.com/embed.js",
+          dataType: "script",
+          cache: true
+        });
+        $(this).parent().addClass('activated');
+      });
+  });
+</script>
+</body>
+
+</html>

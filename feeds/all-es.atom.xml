@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Blog | AkB</title><link href="http://blog.akb.soy/" rel="alternate"></link><link href="http://blog.akb.soy/feeds/all-es.atom.xml" rel="self"></link><id>http://blog.akb.soy/</id><updated>2025-03-21T02:18:32-05:00</updated><subtitle>HappyHacking!!</subtitle><entry><title>Acceso Remoto en GnuLinux a través de VNC 💻</title><link href="http://blog.akb.soy/2018/12/vncserver/" rel="alternate"></link><published>2018-12-02T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2018-12-02:/2018/12/vncserver/</id><summary type="html">&lt;p&gt;Trabajando con VNC Server y x11vnc para permitir el acceso remoto a una sesión abierta. 💻&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Instalación y Configuración&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Verificar si se encuentra instalado:  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo rpm -q vnc-server&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Si no existe hay que instalar el siguiente paquete:  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo yum install vnc-server&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Crear password VNC para usuarios del sistema.&lt;br&gt;
+Una vez logueado el usuario debera ejecutar:  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vncpasswd&lt;/code&gt;&lt;br&gt;
+El comando crea el directorio &lt;code&gt;~/.vnc&lt;/code&gt; y el archivo &lt;code&gt;passwd&lt;/code&gt;  &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Importante:&lt;/strong&gt; Agregar una contraseña robusta, 
+  porque el algoritmo utilizado es vulnerable.  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Para iniciar VNC en una sesión ya establecida es necesario el paquete x11vnc  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo yum install x11vnc&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Permitir conexión &lt;strong&gt;insegura&lt;/strong&gt; VNC hacia una sesión abierta&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Dentro de la sesión abierta ejecutar lo siguiente:  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;x11vnc -forever -rfbauth ~/.vnc/passwd&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Conexión &lt;strong&gt;insegura&lt;/strong&gt; por Cliente VNC&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Verificar si se encuentra algún cliente instalado:  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo rpm -q vnc&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Si no existe, puedes instalar alguno de los siguiente clientes:  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo yum install vnc&lt;/code&gt;  ó&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yum install remmina&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Configurar en el cliente la sesión VNC a conectarse.  &lt;ul&gt;
+&lt;li&gt;IP del Servidor VNC   &lt;/li&gt;
+&lt;li&gt;Puerto de conexion VNC-Server  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Agregué la conexión no recomendable para poner en conocimiento 
+  que la misma &lt;strong&gt;es insegura&lt;/strong&gt; porque todo el tráfico va en texto plano.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Conexión a través de ssh/x11vnc desde el cliente&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Iniciar la conexión, a través de SSH desde el cliente:  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ssh&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;-L&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5900&lt;/span&gt;:localhost:5900&lt;span class="w"&gt; &lt;/span&gt;usuario@IPdeRed&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;x11vnc -localhost -display :0&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Configurar el Cliente VNC para &lt;em&gt;localhost&lt;/em&gt;.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;URLs&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://wiki.centos.org/es/HowTos/VNC-Server"&gt;VNC-Server CentOs&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://www.karlrunge.com/x11vnc/"&gt;x11vnc&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://www.atareao.es/ubuntu/gestion-remota-con-ubuntu-ssh-y-x11vnc/#"&gt;ssh-y-x11vnc&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://wiki.archlinux.org/index.php/x11vnc"&gt;x11vnc_tutorial&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://es.godaddy.com/help/como-configurar-escritorio-remoto-para-su-servidor-dedicado-linux-centos-o-fedora-6012"&gt;VNC_Server_CentOs&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://askubuntu.com/questions/330983/no-desktop-showing-in-ubuntu-13-04-via-vnc-on-a-vps"&gt;Configuracion_xstartup&lt;/a&gt;  &lt;/p&gt;
+&lt;h2&gt;Consideraciones de Seguridad Informática&lt;/h2&gt;
+&lt;p&gt;He realizado algunas pruebas para agregar SSL al servicio VNC y utilizarla con 
+el cliente VNC Viewer (Real VNC), pero aún tengo algunos errores por lo cual 
+parte de la guía públicada en este post no es segura. Se recomienda hacer uso 
+de VNC a través de ssh/x11vnc&lt;/p&gt;
+&lt;p&gt;Para añadir mayor seguridad a la conexión VNC es necesario agregar reglas de Iptables 
+ó TCPWrappers para permitir una conexión segregada para determinados equipos. 
+También se puede añadir permisos al servicio sshd para controlar que usuarios pueden 
+conectarse a través de &lt;code&gt;ssh/x11vnc&lt;/code&gt; cuando sea necesario.  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;No se recomienda dejar activo el servicio de VNC&lt;/strong&gt; y las configuraciones 
+publicadas en este post se debe utilizar unicamente cuando sea necesario.  &lt;/p&gt;
+&lt;p&gt;Si conocen de algún metodo seguro por favor añadirlo en sus comentarios. 
+Agradezco el tiempo de lectura y las sugerencias para mejorar el post.  &lt;/p&gt;</content><category term="gnu-linux"></category><category term="vnc"></category><category term="x11vnc"></category><category term="remmina"></category><category term="gnulinux"></category><category term="ssh"></category><category term="howto"></category><category term="fedora"></category></entry><entry><title>Comandos prácticos en GnuLinux 🐃🐧</title><link href="http://blog.akb.soy/2018/10/commandGnuLinux/" rel="alternate"></link><published>2018-10-14T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2018-10-14:/2018/10/commandGnuLinux/</id><summary type="html">&lt;p&gt;Listado de comandos de uso práctico en GnuLinux 😎💻&lt;/p&gt;</summary><content type="html">&lt;p&gt;Como lo prometido es deuda, pongo a su disposición una lista de comandos prácticos para la consola de GnuLinux.&lt;br&gt;
+Mi idea no es detallar la funcionalidad de cada comando, sino mostrar una lista practica de los comandos 
+que he recopilado durante mi experiencia de uso del Sistema Operativo.&lt;/p&gt;
+&lt;p&gt;Para detallar que hace cada comando podemos hacer uso de los &lt;strong&gt;man-page&lt;/strong&gt; propios de cada comando utilizando:&lt;br&gt;
+man &lt;em&gt;comando&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;ps&lt;/h2&gt;
+&lt;h4&gt;Para ver los procesos que ocupan más memoria&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ps aux | awk '{print $2, $4, $11}' | sort -k2r | head -n 15&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para sumar la memoria total de todos los procesos httpd&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ps aux | awk '/httpd/ {sum+=$6} END {printf "%dMB\n", sum/1024}'&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Matar un proceso determinado.&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ps aux | grep &amp;lt;something&amp;gt; | awk '{print $2}' | xargs kill&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Matar los procesos de un determinado usuario.&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ps -o pid -u nombreUsuario | xargs kill -1&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;du&lt;/h2&gt;
+&lt;h4&gt;Para visualizar el tamaño por sumatoria de un determinado directorio&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;du -sh /home&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para visualizar el tamaño de las carpetas de la Raíz "/" excepción carpetas del sistema&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;du --max-depth=1 -hx /&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para filtrar directorios que tengan mayor a un tamaño indicado&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;du -h /var/www | awk '$10 ~ ".*M.*" {print $2}'&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;sort&lt;/h2&gt;
+&lt;h4&gt;Ordenación de mayor a menor Usuarios por uid:&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;cat /etc/passwd| sort -t":" -k3nr&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;grep&lt;/h2&gt;
+&lt;h4&gt;Búsqueda de una fecha específica en los logs de PHP&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;grep -E '16-Jun-2015|17-Jun-2015' /var/log/php-errors.log&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Busquedas recursivas&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;grep -R -i -n 'Keyring' * -R&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para copiar los archivos de determinada extensión que coinciden con una búsqueda&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;grep&lt;span class="w"&gt; &lt;/span&gt;--include&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;*.akb&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tcpdump&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;*&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;cut&lt;span class="w"&gt; &lt;/span&gt;-d:&lt;span class="w"&gt; &lt;/span&gt;-f1&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;uniq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;xargs&lt;span class="w"&gt; &lt;/span&gt;cp&lt;span class="w"&gt; &lt;/span&gt;-vt&lt;span class="w"&gt; &lt;/span&gt;/tmp/temporal01/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Lo mismo, pero con el comando find:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;find&lt;span class="w"&gt; &lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;-name&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;*.akb&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-exec&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tcpdump&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;{}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;cut&lt;span class="w"&gt; &lt;/span&gt;-d:&lt;span class="w"&gt; &lt;/span&gt;-f1&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;uniq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;xargs&lt;span class="w"&gt; &lt;/span&gt;cp&lt;span class="w"&gt; &lt;/span&gt;-vt&lt;span class="w"&gt; &lt;/span&gt;/tmp/temporal01/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;less&lt;/h2&gt;
+&lt;h4&gt;Conservar el resalte de las búsquedas:&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;grep --color=always -i script *html | less -r&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;sed&lt;/h2&gt;
+&lt;h4&gt;Para visualizar archivos de configuración sin comentarios (#) y sin espacios.&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;cat archivo.conf | grep -v -E '^#' | sed -e '/^$/d'&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;awk&lt;/h2&gt;
+&lt;h4&gt;Para imprimir determinada linea de un documento:&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;awk "NR==3" nombreArchivo.txt&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;tr&lt;/h2&gt;
+&lt;h4&gt;Reemplazar las Comillas (") por un Espacio en Blanco, y los punto y comas por el carácter de Tabulación (\t).&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;echo '"Juan";"Pepe";' | tr '";' ' \t'&lt;/code&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Útil para trabajar con Archivos CSV.  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;ls&lt;/h2&gt;
+&lt;h4&gt;Para mostrar los directorios con el "/"&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ls -F&lt;/code&gt;&lt;br&gt;
+&lt;a href="https://unix.stackexchange.com/questions/146802/the-f-option-for-ls"&gt;Referencia ls option F&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Para listar directorios&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ls -d */&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para listar subdirectorios&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ls -d */*/&lt;/code&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si necesitamos seguir profundizando añadimos &lt;code&gt;*/&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;Para mostrar directorios ocultos&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ls -d .*/&lt;/code&gt;&lt;br&gt;
+&lt;a href="http://blockdeubuntu.blogspot.com/2008/12/cmo-listar-slo-directorios-en-el.html"&gt;Referencia ls option d&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Obtener un listado de los ficheros del directorio actual, ordenado de mayor a menor por tamaño de archivo&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ls -l | sort -r +4n&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para listar determinados archivos ordenados por el tamaño de los mismos&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ls&lt;span class="w"&gt; &lt;/span&gt;-al&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;*.txt|*.log|*.glf|*.hprof|log.bo*|*.trc&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sort&lt;span class="w"&gt; &lt;/span&gt;-n&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;-k&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;more
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;cp&lt;/h2&gt;
+&lt;h4&gt;Copiar Archivos desde un listado txt&lt;/h4&gt;
+&lt;p&gt;Para copiar un listado de archivos que se encuentran en un archivo txt, sin necesidad de conservar los permisos:&lt;br&gt;
+&lt;code&gt;cat listadoArchivosCommit.txt | xargs cp -vt /tmp/TestCopia&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para copiar archivos que están en un listado, pero conservando los permisos:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;read&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;line&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;cp&lt;span class="w"&gt; &lt;/span&gt;-vrp&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;../akb_mkdocs/&lt;span class="nv"&gt;$line&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;&lt;span class="w"&gt; &lt;/span&gt;listadoArchivosCommit.tmp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;mv&lt;/h2&gt;
+&lt;h4&gt;Para mover Archivos desde un listado txt&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;file&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;listoffiles&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;mv&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/path/de/destino&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;xargs -a file_list.txt mv -t /path/de/destino&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para renombrar archivos cuyo nombre contengan espacios en blanco&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;FILE&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;*.wav&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;NEWFILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sed&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/ /_/g&amp;#39;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;mv&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$NEWFILE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;find&lt;/h2&gt;
+&lt;p&gt;Comando utilizado para buscar archivos en GnuLinux, 
+existen distintas variantes del mismo para realizar diferentes tareas:&lt;/p&gt;
+&lt;h4&gt;Para buscar algun archivo utilizando parámetros de nombre y con texto en particular&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find ./ -type f -name '*.doc*' | grep -i project&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para Cambiar los permisos de SOLO los DIRECTORIOS de un sitio en especifico&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find ./certificate -type d -exec chmod 0750 {} \;&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para Cambiar los permisos de SOLO los ARCHIVOS de un sitio en especifico&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find ./certificate ! -type d -exec chmod 0640 {} \;&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para Borrar los archivos con algun parámetro especial de búsqueda&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find ./ -name '*06162015*' -exec rm -rf {} \;&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para listar los archivos que fueron creados desde hace 30 días&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;find&lt;span class="w"&gt; &lt;/span&gt;./&lt;span class="w"&gt; &lt;/span&gt;-type&lt;span class="w"&gt; &lt;/span&gt;f&lt;span class="w"&gt; &lt;/span&gt;-mmin&lt;span class="w"&gt; &lt;/span&gt;-43200&lt;span class="w"&gt; &lt;/span&gt;-exec&lt;span class="w"&gt; &lt;/span&gt;ls&lt;span class="w"&gt; &lt;/span&gt;-lt&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;{}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;**&lt;span class="w"&gt; &lt;/span&gt;Archivos&lt;span class="w"&gt; &lt;/span&gt;menores&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;30&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Dias&lt;span class="w"&gt; &lt;/span&gt;**&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;30&lt;/span&gt;*&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;24&lt;/span&gt;*60&lt;span class="o"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Para copiar determinados archivos hacia otro directorio utilizando &lt;strong&gt;cp&lt;/strong&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;find&lt;span class="w"&gt; &lt;/span&gt;./&lt;span class="w"&gt; &lt;/span&gt;-type&lt;span class="w"&gt; &lt;/span&gt;f&lt;span class="w"&gt; &lt;/span&gt;-mmin&lt;span class="w"&gt; &lt;/span&gt;-43200&lt;span class="w"&gt; &lt;/span&gt;-exec&lt;span class="w"&gt; &lt;/span&gt;/usr/bin/cp&lt;span class="w"&gt; &lt;/span&gt;-rp&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;{}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;../tmp/&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Para eliminar los backups con más de 02 dias (48 horas)&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -mtime +1 -delete&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para mostrar o listar los directorios vacíos a partir del directorio actual.&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -empty -type d&lt;/code&gt;  &lt;/p&gt;
+&lt;h4&gt;Para contar los archivos pero solo en carpetas dos niveles por debajo&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -maxdepth 2 -type f | wc -l&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para contar archivos de forma recursiva ilimitada&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -type f | wc -l&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para contar directorios de forma recursiva ilimitada&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -type d | wc -l&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para contar enlaces de forma recursiva ilimitada&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -type l | wc -l&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para contar archivos y carpetas de forma recursiva&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . | wc -l&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para contar archivos con una extensión determinada&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -type f -iname “*.php” | wc -l&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para listar archivos ocultos de determinado directorio&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -type d -iname ".*" -ls&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para cambiar texto dentro de algún tipo de archivo en particular&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;find&lt;span class="w"&gt; &lt;/span&gt;/test/&lt;span class="w"&gt; &lt;/span&gt;-name&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;*.txt&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-print&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;xargs&lt;span class="w"&gt; &lt;/span&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;s/SYSADMIT/--SYSADMIT--/g&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Para buscar archivos mayores a 1024MB&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find ./ -size +1024M -exec /bin/du -sh {} \;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://unix.stackexchange.com/questions/92346/why-does-find-mtime-1-only-return-files-older-than-2-days"&gt;unix_stackexchange_find&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://www.pedroventura.com/linux/contar-todos-los-archivos-existente-en-un-directorio-en-linux/"&gt;Contar_Files_Con_Find&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://www.sysadmit.com/2015/07/linux-reemplazar-texto-en-archivos-con-sed.html"&gt;Find_con_sed&lt;/a&gt;  &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;curl&lt;/h2&gt;
+&lt;h4&gt;Para resumir las descargas a través de curl&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;ec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;18&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$ec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-eq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;18&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/usr/bin/curl&lt;span class="w"&gt; &lt;/span&gt;-O&lt;span class="w"&gt; &lt;/span&gt;-C&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://www.example.com/big-archive.zip&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;ec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$?&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;ln&lt;/h2&gt;
+&lt;h4&gt;Crear enlace simbólico&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ln origen destino&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;sudo ln -s /usr/bin/csvlook-3.5 /usr/bin/csvlook&lt;/code&gt;  &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;isoinfo&lt;/h2&gt;
+&lt;h4&gt;Para montar imagen Linux si solo quieres listar su contenido.&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ìsoinfo -l -i imagen.iso&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Al presente listado hacen falta muchos más comandos... pero eso es lo bonito de GnuLinux, 
+que nunca terminamos de aprender si puedes recomendar algún comando útil que haga falta 
+a este listado agrégalo en los comentarios.&lt;/p&gt;
+&lt;p&gt;Espero sea útil este tipo de post. Agradezco su tiempo de lectura 😃&lt;/p&gt;</content><category term="gnu-linux"></category><category term="terminal"></category><category term="gnulinux"></category><category term="fedora"></category></entry><entry><title>Hola Mundo 2.0 😉👋</title><link href="http://blog.akb.soy/2018/10/helloWorldv2.0/" rel="alternate"></link><published>2018-10-04T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2018-10-04:/2018/10/helloWorldv2.0/</id><summary type="html">&lt;p&gt;De vuelta al Blog! 😊&lt;/p&gt;</summary><content type="html">&lt;p&gt;Buen día con todos!!&lt;/p&gt;
+&lt;p&gt;A pesar que he descuido las publicaciones de este blog, por los nuevos retos que adquirí este año!, 
+la idea de devolver algo de lo mucho que me ha brindado el internet sigue vigente. 
+Hoy tuve la oportunidad de participar en un foro de Ciberseguridad... y me pregunto como 
+es posible exigir Ciberseguridad en este país cuando a los jovenes ecuatorianos 
+en los colegios públicos no se les brinda el acceso a estudiar computación como parte 
+de su bachillerato general unificado.&lt;/p&gt;
+&lt;p&gt;Es complicado brindar seguridad informática sin una cultura digital, lamentablemente 
+no todos tuvimos las oportunidades de estudiar en colegios pagados o de poder ingresar 
+al mejor colegio de la ciudad. Por ello el Software Libre y el Open Source surge 
+como la mejor opción de aprendizaje sin muchos recursos. Bueno con todo esto! 
+me doy cuenta que la única forma de aportar a que las cosas cambien es compartiendo conocimiento! 
+y en eso se basa este blog.&lt;/p&gt;
+&lt;p&gt;Publicaré posts más seguidos para que las personas interesadas vayan aprendiendo 
+del conocimiento que me ha servido en mi vida personal y profesional. &lt;/p&gt;
+&lt;p&gt;Creo necesario públicar este post, como recordatorio al compromiso de devolver algo 
+de lo mucho que he aprendido de gente que comparte la misma visión!!&lt;/p&gt;
+&lt;p&gt;Hagamos del conocimiento algo mejor!! #HappyHacking&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AkB&lt;/strong&gt; &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Art kBytes&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="Personal"></category><category term="akb"></category></entry><entry><title>Trabajando con Git 🐙</title><link href="http://blog.akb.soy/2018/02/git-tips/" rel="alternate"></link><published>2018-02-18T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2018-02-18:/2018/02/git-tips/</id><summary type="html">&lt;p&gt;Aprende el uso básico de Git, instalación y configuración. 🐙&lt;/p&gt;</summary><content type="html">&lt;p&gt;Git es un software de control de versiones distribuido, mundialmente utilizado
+por su eficiencia. Para una mejor explicación de &lt;em&gt;qué es git y para qué sirve? ...&lt;/em&gt;
+recomiendo ver las guias publicadas por &lt;a href="https://www.makigas.es/"&gt;Makigas&lt;/a&gt; a través de su canal de Youtube
+&lt;a href="https://www.youtube.com/playlist?list=PLTd5ehIj0goMCnj6V5NdzSIHBgrIXckGU"&gt;Makigas - Tutorial de Git&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Mi intención en este post, es resumir mi experiencia al utilizar Git desde
+Gnu-Linux Fedora, al final hago referencia a algunas de las &lt;a href="#urls"&gt;URLs&lt;/a&gt; 
+que me han ayudado en este aprendizaje.  &lt;/p&gt;
+&lt;h2&gt;Instalación&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;yum install git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git --version&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Creación de llaves Cliente&lt;/h3&gt;
+&lt;p&gt;Crear llaves SSH a traves del comando:&lt;br&gt;
+    * &lt;code&gt;ssh-keygen&lt;/code&gt;&lt;br&gt;
+    * &lt;em&gt;Poner una contraseña&lt;/em&gt;&lt;br&gt;
+    * &lt;code&gt;eval $(ssh-agent -s)&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;ssh-add&lt;/code&gt;  &lt;/p&gt;
+&lt;h3&gt;Configuración Cliente Git&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git config --global user.name nombreAsignado&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git config --global user.email mailAsignado&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git config --global core.editor "vim"&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Configuración por repositorio&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git config user.name "neogeoakb"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git config user.email "neogeob@akb.soy"&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para los que necesiten colorear git log y git diff en la terminal, utilizar:&lt;br&gt;
+* &lt;code&gt;git config --global core.pager "less -R"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para visualizar las configuraciones actuales del cliente Git:&lt;br&gt;
+    * &lt;code&gt;git config --list&lt;/code&gt;  &lt;/p&gt;
+&lt;p&gt;Para verificar las configuraciones podemos ir al archivo &lt;code&gt;.gitconfig&lt;/code&gt;:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;.gitconfig
+&lt;span class="o"&gt;[&lt;/span&gt;user&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ferchoPortal
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;email&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;neogeo@akb.soy
+
+&lt;span class="o"&gt;[&lt;/span&gt;core&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;editor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;vim
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;Comandos Basicos&lt;/h2&gt;
+&lt;h3&gt;init&lt;/h3&gt;
+&lt;p&gt;Para crear un repositorio Git.&lt;br&gt;
+    * &lt;code&gt;git init&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;status&lt;/h3&gt;
+&lt;p&gt;Para ver el estado actual.&lt;br&gt;
+    * &lt;code&gt;git status&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;clone&lt;/h3&gt;
+&lt;p&gt;Para clonar un proyecto en GitHub.&lt;br&gt;
+    * &lt;code&gt;git clone html_GitHub&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para clonar un proyecto git de forma local.&lt;br&gt;
+    * &lt;code&gt;git clone akb.soy/.git ./blog.akb.soy/&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;git clone -b my-branch git@github.com:user/myproject.git&lt;/code&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://stackoverflow.com/questions/1911109/how-to-clone-a-specific-git-branch"&gt;ref_gitClone_01&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;add&lt;/h3&gt;
+&lt;p&gt;Para agregar archivos al index (Stagin).&lt;br&gt;
+    * &lt;code&gt;git add nombreArchivo&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;reset&lt;/h2&gt;
+&lt;p&gt;Para reversar el &lt;code&gt;git add&lt;/code&gt; debemos utilizar:&lt;br&gt;
+    * &lt;code&gt;git reset nombreArchivo&lt;/code&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://es.stackoverflow.com/questions/3575/quitar-archivos-a%C3%B1adidos-antes-de-un-commit"&gt;ref_gitReset_01&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://www.acamica.com/comunidad/4918/como-deshacer-git-add-antes-de-hacer-un-commit"&gt;ref_gitReset_02&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;rm&lt;/h3&gt;
+&lt;p&gt;Para eliminar un archivo.&lt;br&gt;
+    * &lt;code&gt;git rm file1.txt&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;git commit -m "remove file1.txt"&lt;/code&gt;  &lt;/p&gt;
+&lt;p&gt;Pero si desea eliminar el archivo sólo del repositorio de Git y no eliminarlo
+del sistema de archivos, utilizar:&lt;br&gt;
+    * &lt;code&gt;git rm --cached file1.txt&lt;/code&gt;  &lt;/p&gt;
+&lt;h3&gt;branch&lt;/h3&gt;
+&lt;p&gt;Para ver la rama actual de Git.&lt;br&gt;
+    * &lt;code&gt;git branch&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para crear una nueva rama.&lt;br&gt;
+    * &lt;code&gt;git branch nombreDeLaRama&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para mostrar todas las ramas.&lt;br&gt;
+    * &lt;code&gt;git branch --all&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para borrar una rama en nuestro repositorio local.&lt;br&gt;
+    * &lt;code&gt;git branch -d nombre_rama&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para forzar el borrado de una rama en nuestro repositorio local.&lt;br&gt;
+    * &lt;code&gt;git branch -D nombre_rama&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para borrar una rama en nuestro repositorio Remoto.&lt;br&gt;
+    * &lt;code&gt;git push origin :nombre-rama&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;git push origin --delete nombre-rama&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;checkout&lt;/h3&gt;
+&lt;p&gt;Para pasar a trabaja con esa rama.&lt;br&gt;
+    * &lt;code&gt;git checkout nombreDeLaRama&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para crear una rama y trabajar desde ella Directamente.&lt;br&gt;
+    * &lt;code&gt;git checkout -b nombreDeLaRama&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para crear una rama con el contenido de un repositorio remoto:&lt;br&gt;
+    * &lt;code&gt;git checkout -b private_cv origin/private_cv&lt;/code&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://stackoverflow.com/questions/40310932/git-hub-clone-all-branches-at-once"&gt;ref_gitCheckout_01&lt;/a&gt;  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;merge&lt;/h3&gt;
+&lt;p&gt;Para fusionar ramas dentro de la rama activa.&lt;br&gt;
+    * &lt;code&gt;git checkout master&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;git diff master test_blog_01&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;git merge test_blog_01&lt;/code&gt;  &lt;/p&gt;
+&lt;h3&gt;commit&lt;/h3&gt;
+&lt;p&gt;Para guardar en git los cambios de uno o varios archivos de forma local.&lt;br&gt;
+&lt;code&gt;git commit -m "Texto que identifique por que se hizo el commit"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para agregar un nuevo cambio sin que se registre otro commit.&lt;br&gt;
+    * &lt;code&gt;git commit --amend&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para que el commit se replique en los repositorios remotos debemos ejecutar:&lt;br&gt;
+    * &lt;code&gt;git push --force&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para modificar el mensaje del commit sin necesidad de crear otro commit.&lt;br&gt;
+    * &lt;code&gt;git commit -m "Mensaje corregido" --amend&lt;/code&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="http://community.logicalbricks.com/node/89"&gt;ref_gitCommit_01&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;log&lt;/h3&gt;
+&lt;p&gt;Para visualizar los commit realizados anteriormente.&lt;br&gt;
+    * &lt;code&gt;git log --oneline --decorate --all --graph&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;diff&lt;/h3&gt;
+&lt;p&gt;Para visualizar las diferencias entre archivos versionados.&lt;br&gt;
+    * &lt;code&gt;git diff&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;git diff nombreArchivo&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;git diff branch-comparar branch-actual nombreArchivo&lt;/code&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="http://www.7sabores.com/blog/encontrar-las-diferencias-un-archivo-diferentes-ramas-git"&gt;ref_gitDiff_01&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;remote&lt;/h3&gt;
+&lt;p&gt;Para crear repositorios remotos.&lt;br&gt;
+    * &lt;code&gt;git remote add origin git@git.akb.soy:py2_resumen_cv.git&lt;/code&gt;  &lt;br&gt;
+    * &lt;code&gt;git remote add akb git@git.akb.soy:resumen_cv.git&lt;/code&gt;  &lt;/p&gt;
+&lt;p&gt;Para visualizar los repositorios remotos.&lt;br&gt;
+    * &lt;code&gt;git remote -v&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;git remote -v --all&lt;/code&gt;  &lt;/p&gt;
+&lt;p&gt;Para eliminar repositorios remotos.&lt;br&gt;
+    * &lt;code&gt;git remote rm origin&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;push&lt;/h3&gt;
+&lt;p&gt;Para enviar tus cambios locales hacia respositorios remotos.&lt;br&gt;
+    * &lt;code&gt;git push origin master&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;git push akb --all&lt;/code&gt;  &lt;/p&gt;
+&lt;h3&gt;pull&lt;/h3&gt;
+&lt;p&gt;Para recibir los ultimos cambios almacenados en los repositorios remotos.&lt;br&gt;
+    * &lt;code&gt;git pull origin master&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;git pull --rebase --stat origin master&lt;/code&gt;  &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="urls"&gt;URLs&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://tombatossals.github.io/git-puesto-en-practica/ejemplos/"&gt;git-puesto-en-practica&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://elbauldelprogramador.com/mini-tutorial-y-chuleta-de-comandos-git/"&gt;mini-tutorial-y-chuleta-de-comandos-git&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://gist.github.com/dasdo/9ff71c5c0efa037441b6"&gt;git-uso-dasdo&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://carlossanchezperez.wordpress.com/2012/12/02/mi-guia-esencial-de-git-primera-parte/"&gt;git-carlotssanchezperez-01&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://carlossanchezperez.wordpress.com/2012/12/31/mi-guia-esencial-de-git-segunda-parte/"&gt;git-carlotssanchezperez-01&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://www.vogella.com/articles/Git/article.html"&gt;git-vogella&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://www.vogella.com/articles/EGit/article.html"&gt;EGit-vogella&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://rogerdudler.github.io/git-guide/index.es.html"&gt;git-rogerdudler&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://gist.github.com/jelcaf/1404619"&gt;git-jelcaf&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://gnustav.org/tools/colorear-git-log-y-git-diff-en-la-terminal.html"&gt;colorear-git-log-y-git-diff&lt;/a&gt;  &lt;/p&gt;
+&lt;hr&gt;</content><category term="git"></category><category term="gnulinux"></category><category term="fedora"></category><category term="git"></category><category term="howto"></category></entry><entry><title>Usando DotFiles 📝</title><link href="http://blog.akb.soy/2017/12/dotfiles/" rel="alternate"></link><published>2017-12-17T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2017-12-17:/2017/12/dotfiles/</id><summary type="html">&lt;p&gt;Trabajando con Dotfiles, aprende a agrupar los archivos de configuración ocultos en un solo directorio.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Instalación&lt;/h2&gt;
+&lt;h3&gt;Tmux&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;yum install tmux.x86_64&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Instalación Vim&lt;/h3&gt;
+&lt;p&gt;Prerequisitos para vim:&lt;br&gt;
+  * &lt;code&gt;yum install ctags&lt;/code&gt;                                                         &lt;br&gt;
+  * &lt;code&gt;yum install vim.x86_64&lt;/code&gt;                                                      &lt;/p&gt;
+&lt;p&gt;Archivos de Configuracion &lt;br&gt;
+  * &lt;code&gt;vim ~/.tmux.conf&lt;/code&gt;                                                          &lt;br&gt;
+  * &lt;code&gt;vim ~/.vimrc&lt;/code&gt;                                                                &lt;/p&gt;
+&lt;h3&gt;Instalación Zsh&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;yum install zsh&lt;/code&gt;                                                                                &lt;br&gt;
+Clonamos el proyecto de GitHub:                         &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git clone git://github.com/robbyrussell/oh-my-zsh.git&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Editamos el archivo install.sh, comentamos las siguiente linea.&lt;br&gt;
+  * &lt;code&gt;#chsh -s $(grep /zsh$ /etc/shells | tail -1)&lt;/code&gt;                               &lt;/p&gt;
+&lt;p&gt;Ejecutamos el archivo de instalación
+  * &lt;code&gt;bash tools/install.sh&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;Configuración Manual Dotfiles&lt;/h2&gt;
+&lt;h3&gt;Tmux .dotfiles&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mkdir ~/.dotfiles/tmux&lt;/code&gt;                                                      &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd ~&lt;/code&gt;                                                                        &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ln -s ~/.dotfiles/tmux/.tmux.conf .&lt;/code&gt;                                         &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Vim .dotfiles&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mkdir ~/.dotfiles/vim&lt;/code&gt;                                                       &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cp -rp ~/.vimrc ~/.dotfiles/vim/&lt;/code&gt;                                            &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd ~&lt;/code&gt;                                                                        &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ln -s ~/.dotfiles/vim/.vimrc .&lt;/code&gt;                                              &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Zsh .dotfiles&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mkdir ~/.dotfiles/oh-my-zsh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd ~/.dotfiles/oh-my-zsh&lt;/code&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Asignamos el valor a la variable ZSH = ~/.dotfiles/oh-my-zsh                    &lt;/p&gt;
+&lt;p&gt;En los archivos:                                                   &lt;br&gt;
+  * templates/zshrc.zsh-template&lt;br&gt;
+  * tools/install.sh                                                                &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;Configuración Automática Dotfiles&lt;/h2&gt;
+&lt;p&gt;Creamos el directorio &lt;code&gt;.dotfiles&lt;/code&gt;                                             &lt;br&gt;
+  * &lt;code&gt;mkdir ~/.dotfiles&lt;/code&gt;&lt;br&gt;
+  * &lt;code&gt;cd .dotfiles&lt;/code&gt;&lt;br&gt;
+  * &lt;code&gt;git clone user@serverGit:akb_dotfiles.git&lt;/code&gt;&lt;br&gt;
+  * &lt;code&gt;ln -s .dotfiles/vim/.vimrc .vimrc&lt;/code&gt;                                    &lt;br&gt;
+  * &lt;code&gt;ln -s .dotfiles/tmux/.tmux.conf .tmux_conf&lt;/code&gt;&lt;br&gt;
+  * &lt;code&gt;ln -s .dotfiles/oh-my-zsh/.zshrc .zshrc&lt;/code&gt;  &lt;/p&gt;
+&lt;h3&gt;Instalación Plugins Vim&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vim .vimrc&lt;/code&gt;                                                                  &lt;/li&gt;
+&lt;li&gt;Dentro de vim Ejecutar el siguiente comando &lt;code&gt;:PlugInstall&lt;/code&gt;   &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:bd!&lt;/code&gt; &amp;gt; Salir del archivo sin grabarlo en bash  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para entender de mejor manera los archivos &lt;strong&gt;.dotfiles&lt;/strong&gt;, recomiendo 
+revisar los archivos publicados por &lt;a href="https://github.com/danirod/dotfiles"&gt;Makigas&lt;/a&gt; en Github.&lt;/p&gt;</content><category term="gnu-linux"></category><category term="tmux"></category><category term="vim"></category><category term="zsh"></category><category term="akb"></category><category term="dotfiles"></category><category term="howto"></category></entry><entry><title>Usando GTD con Todo.txt 📝</title><link href="http://blog.akb.soy/2017/12/use_todotxt/" rel="alternate"></link><published>2017-12-16T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2017-12-16:/2017/12/use_todotxt/</id><summary type="html">&lt;p&gt;Getting Things Done con Todo.txt, formatos de uso en diferentes aplicaciones para terminal, entorno gráfico y dispositivos Android.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Porque usarlo?&lt;/h2&gt;
+&lt;p&gt;Si te gusta la simplicidad este &lt;a href="https://todotxt.org/"&gt;Todo.txt&lt;/a&gt; es tu gestor de actividades (&lt;a href="https://es.wikipedia.org/wiki/Getting_Things_Done"&gt;GTD&lt;/a&gt;: Getting Things Done). Es un formato diseñado por &lt;a href="https://ginatrapani.org/"&gt;Gina Trapani&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;El formato de texto simple, puede ser usado en cualquier Sistema Operativo y ahí esta lo grandioso de este sistema.&lt;/p&gt;
+&lt;p&gt;Para entender este sistema debes tener en cuenta estos tres ejes:&lt;br&gt;
+  * Prioridad&lt;br&gt;
+  * Proyecto&lt;br&gt;
+  * Contexto  &lt;/p&gt;
+&lt;h2&gt;Reglas del formato todo.txt&lt;/h2&gt;
+&lt;p&gt;El objetivo del formato es que tiene que ser fácilmente leído. Es un simple archivo de texto donde se usan metadatos como prioridad, proyectos, contexto, creación o completado. Su extructura es variable, pero necesitamos darle un formato para los proyectos (ej. +Blog), contextos (@móvil, @home) y prioridad (como (A) o (B)).&lt;/p&gt;
+&lt;p&gt;El &lt;a href="https://hipertextual.com/archivo/2014/10/todotxt/"&gt;blog&lt;/a&gt; que escribió anderraso, me ayudo a entender el uso del TodoTxt, por ello citaré sus ejemplo y reglas de uso:  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;(A) recargar la tarjeta del bus (B) elegir con el grupo de Telegram el día en el que haremos el trabajo @móvil +TrabajoClase Instalar el programa estadístico R +TrabajoClase @supermercado comprar patatas para ver la peli&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Regla 1.&lt;/h3&gt;
+&lt;p&gt;Si existe prioridad SIEMPRE aparece primero en la lista. La prioridad es una letra de la A a la Z entre paréntesis y debe aparecer al principio de la línea.&lt;/p&gt;
+&lt;h3&gt;Regla 2.&lt;/h3&gt;
+&lt;p&gt;Si no hay prioridad, la fecha de creación aparece primero en la tarea. El formato es (AAAA-MM-DD) y aparecerá al principio de la tarea, nunca al final.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2014-10-21 aprender formato de lista +TodoTxt (A) 2014-10-21 Comprar regalo de cumpleaños para mi hermano @CentroComercial&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Nota: hay aplicaciones que reconocen el formato t:2014-10-21(umbral en el que se puede hacer la tarea) y due:2014-10-21 (fecha límite), y estas no tienen porqué ir al principio.&lt;/p&gt;
+&lt;h3&gt;Regla 3.&lt;/h3&gt;
+&lt;p&gt;Los proyectos y contextos aparecen donde quieras siempre que sea después de la prioridad y la fecha.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;(A) Apuntarme a una carrera 10K @fitness +DesarrolloPersonal los emails@nocuentan.como contextos las sumas 2+2 no cuentan como proyectos&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Regla 4.&lt;/h3&gt;
+&lt;p&gt;Las tareas completadas aparecen con una x al principio, separada de un espacio.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;x Defender el software libre&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Regla 5.&lt;/h3&gt;
+&lt;p&gt;Si ponemos la fecha en la que hemos completado una tarea va después de la x.  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;x 2014-10-21 2014-10-19 ordenar&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;Mi modo de Uso&lt;/h2&gt;
+&lt;h3&gt;Prioridad&lt;/h3&gt;
+&lt;p&gt;Las tareas deben aparecer arriba para verse mejor. En Todo.txt las prioridades se definen desde la:  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A-Z&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Proyecto&lt;/h3&gt;
+&lt;p&gt;Para hacer frente a un proyecto es conveniente dividirlo en tareas más pequeñas (micro-proyectos).  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;+PortalWeb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+Trabajo&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+DSI_Lab&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+Personal&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+Migracion&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+Respaldo&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Contexto&lt;/h3&gt;
+&lt;p&gt;En mi caso utilizó el lugar o la situación en la cual realizaré la tarea. Por ejemplo:  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;@oficina&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@celular&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@online&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@offline&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@casa&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@otroLugar&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Tipo de Acción&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;#Proximo&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#Proyecto&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#EnEspera&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#AlgunDia&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;Formatos&lt;/h2&gt;
+&lt;p&gt;Base:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Prioridad&lt;span class="w"&gt; &lt;/span&gt;REM&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Fecha_Año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;AT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;HoraDeInicio&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MSG&lt;span class="w"&gt; &lt;/span&gt;MensajeActividad&lt;span class="w"&gt; &lt;/span&gt;@Contexto&lt;span class="w"&gt; &lt;/span&gt;+Proyecto&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;#TipoDeAccion TO (HoraDeFin)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Para utilizar por Terminal:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;t&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;fechaInicio&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;AT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Hora:Minuto&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MSG&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;mensaje&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;@contexto&lt;span class="w"&gt; &lt;/span&gt;+Proyecto&lt;span class="w"&gt; &lt;/span&gt;TO&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Hora:Minuto&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;t:&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;due:&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\#&lt;/span&gt;TipoDeAccion&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Para utilizar en el Celular:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;AT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Hora:Minuto&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MSG&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;mensaje&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;@contexto&lt;span class="w"&gt; &lt;/span&gt;+Proyecto&lt;span class="w"&gt; &lt;/span&gt;TO&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Hora:Minuto&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;t:&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;due:&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;#TipoDeAccion`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Para utilizar en el QTodoTxt:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;fechaInicio&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;AT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Hora:Minuto&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MSG&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;mensaje&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;@contexto&lt;span class="w"&gt; &lt;/span&gt;+Proyecto&lt;span class="w"&gt; &lt;/span&gt;TO&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Hora:Minuto&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;t:&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;due:&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;#TipoDeAccion`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Adicionales a las tareas&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Para futuras tareas, &lt;code&gt;t:(año/mes/dia)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Para establecer caducidad de tareas, &lt;code&gt;due:(año/mes/dia)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En mi caso yo las agrego después del &lt;strong&gt;+Proyecto&lt;/strong&gt; y anterior al &lt;strong&gt;#TipoDeAccion&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="productividad"></category><category term="gnulinux"></category><category term="gtd"></category><category term="todotxt"></category><category term="howto"></category></entry><entry><title>GTD con Todo.txt 📝</title><link href="http://blog.akb.soy/2017/11/todotxt/" rel="alternate"></link><published>2017-11-05T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2017-11-05:/2017/11/todotxt/</id><summary type="html">&lt;p&gt;Todo.txt es una forma sencilla de almacenar tus tareas utilizando la metodología Getting Things Done para la gestión de actividades.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Todo.txt&lt;/h1&gt;
+&lt;p&gt;Para trabajar con todo.txt, debemos leer acerca de su funcionamiento.  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://computers.tutsplus.com/tutorials/how-to-manage-your-tasks-with-todotxt--cms-20293"&gt;How to Manage Your Tasks with Todo.txt&lt;/a&gt; by Adrián Perales  &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://eltelardelgeek.com/2013/12/13/todo-txt-simple-y-pequena-maravilla-para-gestionar-tareas/"&gt;todo-txt-simple-y-pequena-maravilla&lt;/a&gt; by Zach LeBar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Instalación&lt;/h2&gt;
+&lt;h3&gt;Clonar repositorio GitHub de GinaTrapani&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;git clone https://github.com/ginatrapani/todo.txt-cli.git&lt;/li&gt;
+&lt;li&gt;cd todo.txt-cli&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Parametrizacion&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;vim .bashrc                                                                   &lt;/li&gt;
+&lt;li&gt;Agregar las siguientes lineas:                                                &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;### ToDo.txt                                                                    &lt;/span&gt;
+&lt;span class="nb"&gt;alias&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;~/ProyectosGitHub_FedoraDell/todo.txt-cli/todo.sh&amp;#39;&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;~/ProyectosGitHub_FedoraDell/todo.txt-cli/todo_completion&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;~/ProyectosGitHub_FedoraDell/todo.txt-cli/todo_completion
+&lt;span class="k"&gt;fi&lt;/span&gt;&lt;span class="w"&gt;                                                                              &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Comandos de Uso&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Agregar actividad o tarea: &lt;code&gt;t a "TextoDeLaTarea"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Poner una fecha a la actividad: &lt;code&gt;t prepend No_DeTarea "2012-09-22"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Asignar un proyecto: &lt;code&gt;t append No_DeTarea "+Proyecto"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Asignar un contexto: &lt;code&gt;t append No_DeTarea "@Contexto"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Añadir Prioridad: &lt;code&gt;t p NoDeItem_DadoPor_t_ls LetraDePrioridad_Entre_AZ&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Listar actividades: &lt;code&gt;t ls&lt;/code&gt;                                               &lt;/li&gt;
+&lt;li&gt;Mostrar lista de tareas filtradas: &lt;code&gt;t list TextoQueQueremosFiltrar&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Listar las Prioridades: &lt;code&gt;t lsp&lt;/code&gt;                                          &lt;/li&gt;
+&lt;li&gt;Listar todas las actividades: &lt;code&gt;t lsa&lt;/code&gt;                                    &lt;/li&gt;
+&lt;li&gt;Finalizar una tarea: &lt;code&gt;t do NoDeItem_DadoPor_t_ls&lt;/code&gt;                        &lt;/li&gt;
+&lt;li&gt;Listar Proyectos(+): &lt;code&gt;t lsprj&lt;/code&gt;                                           &lt;/li&gt;
+&lt;li&gt;Listar Contexto(@): &lt;code&gt;t lsc&lt;/code&gt;                                              &lt;/li&gt;
+&lt;li&gt;Listar archivos del Programa todo.txt: &lt;code&gt;t lf&lt;/code&gt;                            &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Cliente OwnCloud&lt;/h1&gt;
+&lt;h2&gt;Instalacion&lt;/h2&gt;
+&lt;h3&gt;Agregar Repositorio e instalar&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;*&lt;span class="w"&gt; &lt;/span&gt;dnf&lt;span class="w"&gt; &lt;/span&gt;config-manager&lt;span class="w"&gt; &lt;/span&gt;--add-repo&lt;span class="w"&gt; &lt;/span&gt;http://download.opensuse.org/repositories/isv:ownCloud:desktop/Fedora_25/isv:ownCloud:desktop.repo
+*&lt;span class="w"&gt; &lt;/span&gt;dnf&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;owncloud-client
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Parametrización&lt;/h3&gt;
+&lt;p&gt;Creamos el directorio que se sincronizará con OwnCloud.&lt;br&gt;
+* &lt;code&gt;mkdir Sync_OwnCloud&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Mover los archivos &lt;code&gt;todo.txt done.txt report.txt&lt;/code&gt; al directorio creado anteriormente. &lt;br&gt;
+* &lt;code&gt;mv todo.txt done.txt report.txt ./Sync_OwnCloud/&lt;/code&gt;  &lt;/p&gt;
+&lt;p&gt;Crear enlaces simbolicos para &lt;strong&gt;todo.txt&lt;/strong&gt;  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ln -s ./Sync_OwnCloud/todo.txt ./&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ln -s ./Sync_OwnCloud/done.txt ./&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ln -s ./Sync_OwnCloud/report.txt ./&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;QTodoTxt&lt;/h1&gt;
+&lt;h2&gt;Instalacion&lt;/h2&gt;
+&lt;h3&gt;Prerequisitos&lt;/h3&gt;
+&lt;p&gt;Para Ubuntu:&lt;br&gt;
+    * &lt;code&gt;apt-get install python3-pyside&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;apt-get install python3-pyqt5&lt;/code&gt;                                               &lt;br&gt;
+    * &lt;code&gt;apt-get install python3-dateutil&lt;/code&gt;  &lt;/p&gt;
+&lt;p&gt;Para Fedora:              &lt;br&gt;
+    * &lt;code&gt;yum install python3-qt5&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;yum install python3-dateutil&lt;/code&gt;  &lt;/p&gt;
+&lt;h3&gt;Clonar Repositorio Github&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;git clone https://github.com/QTodoTxt/QTodoTxt.git                            &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Enlace simbólico QTodoTxt&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Reconocer el Path del perfil de usuario.  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;echo $PATH&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ir al directorio donde crearemos el enlace directo a la aplicación.  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cd /usr/local/bin&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Crear el enlace directo&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ln -s pathBinarioQtodotxt ./&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Bitacora&lt;/h2&gt;
+&lt;h3&gt;Uso&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;t&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;REM&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2017&lt;/span&gt;/01/03&lt;span class="w"&gt; &lt;/span&gt;Configuracion&lt;span class="w"&gt; &lt;/span&gt;Inicial&lt;span class="w"&gt; &lt;/span&gt;FedoraDellVM&lt;span class="w"&gt; &lt;/span&gt;@oficina&lt;span class="w"&gt; &lt;/span&gt;+Personal&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;#MigracionDell&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;REM&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2017&lt;/span&gt;/01/03&lt;span class="w"&gt; &lt;/span&gt;Configuracion&lt;span class="w"&gt; &lt;/span&gt;Inicial&lt;span class="w"&gt; &lt;/span&gt;FedoraDellVM&lt;span class="w"&gt; &lt;/span&gt;@oficina&lt;span class="w"&gt; &lt;/span&gt;+Personal&lt;span class="w"&gt;          &lt;/span&gt;
+TODO:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;added.&lt;span class="w"&gt;                                                                  &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;t&lt;span class="w"&gt; &lt;/span&gt;ls&lt;span class="w"&gt;                                                     &lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;REM&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2017&lt;/span&gt;/01/03&lt;span class="w"&gt; &lt;/span&gt;Configuracion&lt;span class="w"&gt; &lt;/span&gt;Inicial&lt;span class="w"&gt; &lt;/span&gt;FedoraDellVM&lt;span class="w"&gt; &lt;/span&gt;@oficina&lt;span class="w"&gt; &lt;/span&gt;+Personal&lt;span class="w"&gt;          &lt;/span&gt;
+--&lt;span class="w"&gt;                                                                              &lt;/span&gt;
+TODO:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;tasks&lt;span class="w"&gt; &lt;/span&gt;shown&lt;span class="w"&gt;                                                        &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$
+...
+
+...
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;todo.txt&lt;span class="w"&gt;                                  &lt;/span&gt;
+REM&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2017&lt;/span&gt;/01/03&lt;span class="w"&gt; &lt;/span&gt;Configuracion&lt;span class="w"&gt; &lt;/span&gt;Inicial&lt;span class="w"&gt; &lt;/span&gt;FedoraDellVM&lt;span class="w"&gt; &lt;/span&gt;@oficina&lt;span class="w"&gt; &lt;/span&gt;+Personal&lt;span class="w"&gt;            &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h3&gt;Parametrización OwnCloud&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;mkdir&lt;span class="w"&gt; &lt;/span&gt;Sync_OwnCloud&lt;span class="w"&gt;                                                                                                                                                                            &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;mv&lt;span class="w"&gt; &lt;/span&gt;todo.txt&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;.txt&lt;span class="w"&gt; &lt;/span&gt;report.txt&lt;span class="w"&gt; &lt;/span&gt;./Sync_OwnCloud/
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="w"&gt;                                           &lt;/span&gt;
+~/ProyectosGitHub_FedoraDell/todo.txt-cli
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;ln&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;./Sync_OwnCloud/todo.txt&lt;span class="w"&gt; &lt;/span&gt;./&lt;span class="w"&gt;             &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;ln&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;./Sync_OwnCloud/done.txt&lt;span class="w"&gt; &lt;/span&gt;./&lt;span class="w"&gt;             &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;ln&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;./Sync_OwnCloud/report.txt&lt;span class="w"&gt; &lt;/span&gt;./&lt;span class="w"&gt;           &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h3&gt;Enlace simbolico QTodoTxt&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$
+
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;
+/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/usuario/.local/bin:/home/usuario/bin
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;bin&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/usr/local/bin
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;bin&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;
+/usr/local/bin
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;bin&lt;span class="o"&gt;]&lt;/span&gt;$
+
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;bin&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;su&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ln -s ~/ProyectosGitHub_FedoraDell/QTodoTxt/bin/qtodotxt ./&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;bin&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;ls&lt;span class="w"&gt; &lt;/span&gt;-l
+total&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;
+lrwxrwxrwx.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;root&lt;span class="w"&gt; &lt;/span&gt;root&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;92&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;feb&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;7&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;:26&lt;span class="w"&gt; &lt;/span&gt;qtodotxt&lt;span class="w"&gt; &lt;/span&gt;-&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/ProyectosGitHub_FedoraDell/QTodoTxt/bin/qtodotxt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="productividad"></category><category term="gnulinux"></category><category term="fedora"></category><category term="gtd"></category><category term="todotxt"></category><category term="howto"></category></entry><entry><title>Tips Virtual Box 💻</title><link href="http://blog.akb.soy/2017/11/virtualBox-tips/" rel="alternate"></link><published>2017-11-05T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2017-11-05:/2017/11/virtualBox-tips/</id><summary type="html">&lt;p&gt;Compartir carpetas en tus Maquinas virtuales con Gnu-Linux 🐧&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Carpetas Compartidas en VM Gnu-Linux&lt;/h1&gt;
+&lt;p&gt;Para compartir carpetas dentro de nuestro Sistema Operativo virtualizado, 
+debemos agregar a nuestro usuario por defecto al grupo &lt;code&gt;vboxsf&lt;/code&gt;.  &lt;/p&gt;
+&lt;h2&gt;Procedimiento&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;usermod -G vboxsf -a usuario                                                   &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Bitacora:&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;root@usuario-VM:~#&lt;span class="w"&gt; &lt;/span&gt;groups&lt;span class="w"&gt; &lt;/span&gt;usuario&lt;span class="w"&gt;                                                 &lt;/span&gt;
+usuario&lt;span class="w"&gt; &lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;usuario&lt;span class="w"&gt; &lt;/span&gt;adm&lt;span class="w"&gt; &lt;/span&gt;cdrom&lt;span class="w"&gt; &lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dip&lt;span class="w"&gt; &lt;/span&gt;plugdev&lt;span class="w"&gt; &lt;/span&gt;lpadmin&lt;span class="w"&gt; &lt;/span&gt;sambashare&lt;span class="w"&gt;                   &lt;/span&gt;
+root@usuario-VM:~#&lt;span class="w"&gt; &lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;/etc/group&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;vbox&lt;span class="w"&gt;                                    &lt;/span&gt;
+vboxsf:x:999:&lt;span class="w"&gt;                                                                   &lt;/span&gt;
+
+root@usuario-VM:~#&lt;span class="w"&gt; &lt;/span&gt;usermod&lt;span class="w"&gt; &lt;/span&gt;-G&lt;span class="w"&gt; &lt;/span&gt;vboxsf&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;usuario&lt;span class="w"&gt;                                   &lt;/span&gt;
+
+root@usuario-VM:~#&lt;span class="w"&gt; &lt;/span&gt;groups&lt;span class="w"&gt; &lt;/span&gt;usuario&lt;span class="w"&gt;                                                 &lt;/span&gt;
+usuario&lt;span class="w"&gt; &lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;usuario&lt;span class="w"&gt; &lt;/span&gt;adm&lt;span class="w"&gt; &lt;/span&gt;cdrom&lt;span class="w"&gt; &lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dip&lt;span class="w"&gt; &lt;/span&gt;plugdev&lt;span class="w"&gt; &lt;/span&gt;lpadmin&lt;span class="w"&gt; &lt;/span&gt;sambashare&lt;span class="w"&gt; &lt;/span&gt;vboxsf&lt;span class="w"&gt;            &lt;/span&gt;
+root@usuario-VM:~#&lt;span class="w"&gt;                                                               &lt;/span&gt;
+
+root@usuario-VM:~#&lt;span class="w"&gt; &lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;/etc/group&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;vbox&lt;span class="w"&gt;                                    &lt;/span&gt;
+vboxsf:x:999:usuario&lt;span class="w"&gt;                                                                                                                                            &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h1&gt;Recuperar VM despues de eliminar un Snapshot&lt;/h1&gt;
+&lt;p&gt;Recientemente me pasó, que al realizar un merge de los Snapshot, 
+Virtual Box se me quedo colgado y no termino totalmente sus procesos porque 
+al final opte por finalizar la tarea que estaba ejecutando (lo cual no recomiendo) 
+y luego me dió un error indicando que no encuentra el Snapshot que estaba 
+eliminando con el merge.&lt;/p&gt;
+&lt;p&gt;Googleando un poco di con la solución a este problema: 
+* &lt;a href="https://superuser.com/questions/846162/virtualbox-error-after-deleting-snapshot"&gt;virtualbox-error-after-deleting-snapshot&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Dependiendo del Sistema Operativo en el cual tengas Virtual Box instalado 
+cambiara el binario de &lt;strong&gt;VBoxManage&lt;/strong&gt;, en mi caso ese problema me suscedio en 
+un Windows, por ello los comandos utilizados son los siguientes:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;VBoxManage&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="n"&gt;internalcommands&lt;/span&gt; &lt;span class="n"&gt;sethduuid&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;pathVM\Snapshots\{90d41180-476b-4a60-bc66-2e82ceb4c641}.vmdk&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;90d41180&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;476b&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;4a60-bc66&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;2e82ceb4c641&lt;/span&gt; 
+&lt;span class="n"&gt;Resultado&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;UUID&lt;/span&gt; &lt;span class="n"&gt;changed&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;90d41180&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;476b&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;4a60-bc66&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;2e82ceb4c641&lt;/span&gt;
+&lt;span class="n"&gt;VBoxManage&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="n"&gt;internalcommands&lt;/span&gt; &lt;span class="n"&gt;sethdparentuuid&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;pathVM\Snapshots\{90d41180-476b-4a60-bc66-2e82ceb4c641}.vmdk&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;04756946&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;8820&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;417b-af6e&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;3b1e5f62f747&lt;/span&gt;
+&lt;span class="n"&gt;Resultado&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;UUID&lt;/span&gt; &lt;span class="n"&gt;changed&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;04756946&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;8820&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;417b-af6e&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;3b1e5f62f747&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Antes de encender la VM, revisé el archivo &lt;code&gt;.vbox&lt;/code&gt; buscando referencias del 
+Snapshots eliminado, editando el archivo con un notepad y borrando las lineas 
+donde se tenian esas referencias.&lt;/p&gt;
+&lt;p&gt;De esa manera, pude recuperar la Virtual Machine, despues de un error al 
+eliminar un Snapshot. &lt;strong&gt;#HappyHacking&lt;/strong&gt;&lt;/p&gt;</content><category term="virtualizacion"></category><category term="gnulinux"></category><category term="fedora"></category><category term="virtualbox"></category><category term="howto"></category></entry><entry><title>Trabajando con Virtual Box 💻</title><link href="http://blog.akb.soy/2017/10/virtualBox-gnulinux/" rel="alternate"></link><published>2017-10-27T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2017-10-27:/2017/10/virtualBox-gnulinux/</id><summary type="html">&lt;p&gt;VirtualBox, guia de instalación 🐧&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://www.virtualbox.org/"&gt;Virtual Box&lt;/a&gt; es una herramienta muy útil para virtualizar varios Sistemas
+Operativos utilizado para pruebas de todo tipo.&lt;/p&gt;
+&lt;p&gt;Algo común es que la configuración del BIOS evita virtualizar Sistemas
+Operativos de 64bits.&lt;/p&gt;
+&lt;p&gt;Por ello debemos Habilitar la Virtualización en la BIOS, que por lo general
+esta dentro del Menú Seguridad ó Configuración del Sistema (esto varia
+dependiendo de la marca de Mainboard), dentro de esos menús buscamos alguna
+Opción que mencione la Virtualización y la "habilitamos".&lt;/p&gt;
+&lt;p&gt;Si tienen dudas de como hacerlo pueden visitar el siguiente &lt;a href="https://www.youtube.com/watch?v=7upf3Sm_gNk"&gt;video&lt;/a&gt; que
+enconté en Youtube, existen muchas guías de como hacerlo y estas varían
+según la marca de Mainboard.&lt;/p&gt;
+&lt;h2&gt;Instalación&lt;/h2&gt;
+&lt;p&gt;La guia esta echa para usuarios de Gnu-Linux y puntualmente para las Distros de
+CentOs/RedHat/Fedora que tienen repositorios similares.&lt;/p&gt;
+&lt;p&gt;Creamos el Repositorio de Virtual Box en:  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cd /etc/yum.repos.d/&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;vim virtualbox.repo&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;Añadimos el siguiente texto:  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Fedora&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$releasever&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$basearch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;VirtualBox
+&lt;span class="nv"&gt;baseurl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://download.virtualbox.org/virtualbox/rpm/fedora/&lt;span class="nv"&gt;$releasever&lt;/span&gt;/&lt;span class="nv"&gt;$basearch&lt;/span&gt;
+&lt;span class="nv"&gt;enabled&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="nv"&gt;gpgcheck&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="nv"&gt;gpgkey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;https://www.virtualbox.org/download/oracle_vbox.asc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Ejecutamos los siguientes comandos:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;wget&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;virtualbox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;virtualbox&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;debian&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;oracle_vbox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;asc&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rpm --import oracle_vbox.asc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yum install VirtualBox&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;URLs Guia&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.virtualbox.org/wiki/Linux_Downloads"&gt;Guia Oficial VirtualBox&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Paquetes dependientes de Virtual Box - VBox_Tools&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;yum update kernel&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yum install dkms binutils patch&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yum install gcc make libgomp glibc-headers&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yum install kernel-headers kernel-devel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;La instalación de estos paquetes pueden evitar errores durante la
+instalación del Virtual Box, o cuando se instalen las VBox_Tools.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Generalmente los errores suceden cuando no coincide la versión del Kernel con
+  la versión del kernel-headers y kernel-devel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Errores durante la instalación Virtual Box&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Creating&lt;span class="w"&gt; &lt;/span&gt;group&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;vboxusers&amp;#39;&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;VM&lt;span class="w"&gt; &lt;/span&gt;users&lt;span class="w"&gt; &lt;/span&gt;must&lt;span class="w"&gt; &lt;/span&gt;be&lt;span class="w"&gt; &lt;/span&gt;member&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;that&lt;span class="w"&gt; &lt;/span&gt;group!
+
+No&lt;span class="w"&gt; &lt;/span&gt;precompiled&lt;span class="w"&gt; &lt;/span&gt;module&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;this&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;found&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="w"&gt; &lt;/span&gt;trying&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;one.&lt;span class="w"&gt; &lt;/span&gt;Messages
+emitted&lt;span class="w"&gt; &lt;/span&gt;during&lt;span class="w"&gt; &lt;/span&gt;module&lt;span class="w"&gt; &lt;/span&gt;compilation&lt;span class="w"&gt; &lt;/span&gt;will&lt;span class="w"&gt; &lt;/span&gt;be&lt;span class="w"&gt; &lt;/span&gt;logged&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;/var/log/vbox-install.log.&lt;span class="w"&gt;  &lt;/span&gt;
+
+Stopping&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Recompiling&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;FALLÓ&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Look&lt;span class="w"&gt; &lt;/span&gt;at&lt;span class="w"&gt; &lt;/span&gt;/var/log/vbox-install.log&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;find&lt;span class="w"&gt; &lt;/span&gt;out&lt;span class="w"&gt; &lt;/span&gt;what&lt;span class="w"&gt; &lt;/span&gt;went&lt;span class="w"&gt; &lt;/span&gt;wrong&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Solución:&lt;/strong&gt; Instalar los paquetes dependientes y ejecutar:&lt;br&gt;
+  * &lt;code&gt;/etc/init.d/vboxdrv setup&lt;/code&gt;  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# /etc/init.d/vboxdrv setup&lt;/span&gt;
+Stopping&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt;                         &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Uninstalling&lt;span class="w"&gt; &lt;/span&gt;old&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;DKMS&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Trying&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;register&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;using&lt;span class="w"&gt; &lt;/span&gt;DKMS&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Starting&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt;                         &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Errrores durante la instalación VBox_Tools&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;VBOXADDITIONS_4.3.32_103443&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# ./VBoxLinuxAdditions.run&lt;/span&gt;
+Verifying&lt;span class="w"&gt; &lt;/span&gt;archive&lt;span class="w"&gt; &lt;/span&gt;integrity...&lt;span class="w"&gt; &lt;/span&gt;All&lt;span class="w"&gt; &lt;/span&gt;good.
+Uncompressing&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;.3.32&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Linux............
+VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;installer
+Copying&lt;span class="w"&gt; &lt;/span&gt;additional&lt;span class="w"&gt; &lt;/span&gt;installer&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;...
+Installing&lt;span class="w"&gt; &lt;/span&gt;additional&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;...
+Removing&lt;span class="w"&gt; &lt;/span&gt;existing&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;non-DKMS&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Building&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules
+The&lt;span class="w"&gt; &lt;/span&gt;headers&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;current&lt;span class="w"&gt; &lt;/span&gt;running&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;were&lt;span class="w"&gt; &lt;/span&gt;not&lt;span class="w"&gt; &lt;/span&gt;found.&lt;span class="w"&gt; &lt;/span&gt;If&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;following
+module&lt;span class="w"&gt; &lt;/span&gt;compilation&lt;span class="w"&gt; &lt;/span&gt;fails&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;this&lt;span class="w"&gt; &lt;/span&gt;could&lt;span class="w"&gt; &lt;/span&gt;be&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;reason.
+The&lt;span class="w"&gt; &lt;/span&gt;missing&lt;span class="w"&gt; &lt;/span&gt;package&lt;span class="w"&gt; &lt;/span&gt;can&lt;span class="w"&gt; &lt;/span&gt;be&lt;span class="w"&gt; &lt;/span&gt;probably&lt;span class="w"&gt; &lt;/span&gt;installed&lt;span class="w"&gt; &lt;/span&gt;with
+yum&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;kernel-devel-4.8.6-300.fc25.x86_64
+
+Building&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;module&lt;span class="w"&gt;                   &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;FALLÓ&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;Look&lt;span class="w"&gt; &lt;/span&gt;at&lt;span class="w"&gt; &lt;/span&gt;/var/log/vboxadd-install.log&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;find&lt;span class="w"&gt; &lt;/span&gt;out&lt;span class="w"&gt; &lt;/span&gt;what&lt;span class="w"&gt; &lt;/span&gt;went&lt;span class="w"&gt; &lt;/span&gt;wrong&lt;span class="o"&gt;)&lt;/span&gt;
+Doing&lt;span class="w"&gt; &lt;/span&gt;non-kernel&lt;span class="w"&gt; &lt;/span&gt;setup&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Installing&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;Window&lt;span class="w"&gt; &lt;/span&gt;System&lt;span class="w"&gt; &lt;/span&gt;drivers
+Warning:&lt;span class="w"&gt; &lt;/span&gt;unsupported&lt;span class="w"&gt; &lt;/span&gt;pre-release&lt;span class="w"&gt; &lt;/span&gt;version&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;X.Org&lt;span class="w"&gt; &lt;/span&gt;Server&lt;span class="w"&gt; &lt;/span&gt;installed.&lt;span class="w"&gt;  &lt;/span&gt;Not
+installing&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;X.Org&lt;span class="w"&gt; &lt;/span&gt;drivers.
+&lt;span class="w"&gt;                                                           &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Installing&lt;span class="w"&gt; &lt;/span&gt;graphics&lt;span class="w"&gt; &lt;/span&gt;libraries&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;desktop&lt;span class="w"&gt; &lt;/span&gt;services&lt;span class="w"&gt; &lt;/span&gt;componen&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Otros errores:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;VBOXADDITIONS_4.3.32_103443&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# ./VBoxLinuxAdditions.run&lt;/span&gt;
+Verifying&lt;span class="w"&gt; &lt;/span&gt;archive&lt;span class="w"&gt; &lt;/span&gt;integrity...&lt;span class="w"&gt; &lt;/span&gt;All&lt;span class="w"&gt; &lt;/span&gt;good.
+Uncompressing&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;.3.32&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Linux............
+VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;installer
+Removing&lt;span class="w"&gt; &lt;/span&gt;installed&lt;span class="w"&gt; &lt;/span&gt;version&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;.3.32&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions...
+Copying&lt;span class="w"&gt; &lt;/span&gt;additional&lt;span class="w"&gt; &lt;/span&gt;installer&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;...
+Installing&lt;span class="w"&gt; &lt;/span&gt;additional&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;...
+Removing&lt;span class="w"&gt; &lt;/span&gt;existing&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;DKMS&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Removing&lt;span class="w"&gt; &lt;/span&gt;existing&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;non-DKMS&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Building&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules
+Building&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;module&lt;span class="w"&gt;                   &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;FALLÓ&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;Look&lt;span class="w"&gt; &lt;/span&gt;at&lt;span class="w"&gt; &lt;/span&gt;/var/log/vboxadd-install.log&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;find&lt;span class="w"&gt; &lt;/span&gt;out&lt;span class="w"&gt; &lt;/span&gt;what&lt;span class="w"&gt; &lt;/span&gt;went&lt;span class="w"&gt; &lt;/span&gt;wrong&lt;span class="o"&gt;)&lt;/span&gt;
+Doing&lt;span class="w"&gt; &lt;/span&gt;non-kernel&lt;span class="w"&gt; &lt;/span&gt;setup&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Installing&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;Window&lt;span class="w"&gt; &lt;/span&gt;System&lt;span class="w"&gt; &lt;/span&gt;drivers
+Warning:&lt;span class="w"&gt; &lt;/span&gt;unsupported&lt;span class="w"&gt; &lt;/span&gt;pre-release&lt;span class="w"&gt; &lt;/span&gt;version&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;X.Org&lt;span class="w"&gt; &lt;/span&gt;Server&lt;span class="w"&gt; &lt;/span&gt;installed.&lt;span class="w"&gt;  &lt;/span&gt;Not
+installing&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;X.Org&lt;span class="w"&gt; &lt;/span&gt;drivers.
+&lt;span class="w"&gt;                                                           &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Installing&lt;span class="w"&gt; &lt;/span&gt;graphics&lt;span class="w"&gt; &lt;/span&gt;libraries&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;desktop&lt;span class="w"&gt; &lt;/span&gt;services&lt;span class="w"&gt; &lt;/span&gt;componen&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;VBOXADDITIONS_4.3.32_103443&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Solución:&lt;/strong&gt; Instalar los paquetes dependientes y ejecutar:&lt;br&gt;
+  * &lt;code&gt;./VBoxLinuxAdditions.run --nox11&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;VBOXADDITIONS_5.1.10_112026&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# ./VBoxLinuxAdditions.run --nox11&lt;/span&gt;
+Verifying&lt;span class="w"&gt; &lt;/span&gt;archive&lt;span class="w"&gt; &lt;/span&gt;integrity...&lt;span class="w"&gt; &lt;/span&gt;All&lt;span class="w"&gt; &lt;/span&gt;good.
+Uncompressing&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;.1.10&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Linux...........
+VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;installer
+Removing&lt;span class="w"&gt; &lt;/span&gt;installed&lt;span class="w"&gt; &lt;/span&gt;version&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;.1.10&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions...
+Copying&lt;span class="w"&gt; &lt;/span&gt;additional&lt;span class="w"&gt; &lt;/span&gt;installer&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;...
+Installing&lt;span class="w"&gt; &lt;/span&gt;additional&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;...
+vboxadd.sh:&lt;span class="w"&gt; &lt;/span&gt;Building&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules.
+vboxadd.sh:&lt;span class="w"&gt; &lt;/span&gt;Starting&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions.
+
+Warning:&lt;span class="w"&gt; &lt;/span&gt;unsupported&lt;span class="w"&gt; &lt;/span&gt;pre-release&lt;span class="w"&gt; &lt;/span&gt;version&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;X.Org&lt;span class="w"&gt; &lt;/span&gt;Server&lt;span class="w"&gt; &lt;/span&gt;installed.&lt;span class="w"&gt;  &lt;/span&gt;Not
+installing&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;X.Org&lt;span class="w"&gt; &lt;/span&gt;drivers.
+&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;VBOXADDITIONS_5.1.10_112026&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="virtualizacion"></category><category term="gnulinux"></category><category term="fedora"></category><category term="virtualbox"></category><category term="howto"></category></entry><entry><title>Virtual Environment 🐍</title><link href="http://blog.akb.soy/2017/09/virtualenv/" rel="alternate"></link><published>2017-09-22T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2017-09-22:/2017/09/virtualenv/</id><summary type="html">&lt;p&gt;Trabajando con Python, guia de uso de VirtualEnvironment 🐍&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Conceptos&lt;/h2&gt;
+&lt;h3&gt;virtualenv&lt;/h3&gt;
+&lt;p&gt;Crea un entorno que tiene sus propios directorios de instalación, 
+que no comparte bibliotecas con otros entornos virtualenv 
+(y, opcionalmente, tampoco accede a las bibliotecas instaladas globalmente).&lt;/p&gt;
+&lt;h3&gt;virtualenvwrapper&lt;/h3&gt;
+&lt;p&gt;Es un conjunto de extensiones para la herramienta virtualenv. 
+Las extensiones incluyen "wrapper" para crear, eliminar, 
+listar entornos virtuales, etc. Facilitando el trabajo en más de un proyecto.  &lt;/p&gt;
+&lt;h2&gt;Instalación&lt;/h2&gt;
+&lt;h3&gt;Instalación de Prerequisitos&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;yum install python-pip&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Instalación de Virtual Environment&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pip install virtualenv&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yum install python-virtualenvwrapper&lt;/code&gt; o &lt;code&gt;pip install virtualenvwrapper&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Parametrización virtualenvwrapper&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vim ~/.bashrc&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;Añadimos las siguientes lineas:  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;WORKON_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;~/.virtualenvs
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/usr/bin/virtualenvwrapper.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Compilamos el archivo ~/.bashrc&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;source ~/.bashrc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Guia de Uso&lt;/h2&gt;
+&lt;h3&gt;Crear un nuevo virtualenv&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mkvirtualenv -p /usr/bin/python3.3 proyPython3v3&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Para salir de un virtualenv&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;deactivate&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Listar los Proyectos virtualenv&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;lsvirtualenv&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Listar or Cambiar/Trabajar en virtualenvs&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;workon&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;workon proyPython3v3&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://es.wikipedia.org/wiki/Pip_(administrador_de_paquetes)"&gt;Pip - wikipedia&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://pip.pypa.io/en/stable/"&gt;Pip - Guia Oficial&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://virtualenv.pypa.io/en/stable/"&gt;virtualenv - Guia Oficial&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://virtualenvwrapper.readthedocs.io"&gt;virtualenvwrapper - Guia Oficial&lt;/a&gt;  &lt;/p&gt;
+&lt;h2&gt;Bitacora&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;mkvirtualenv&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;/usr/bin/python3.3&lt;span class="w"&gt; &lt;/span&gt;proyPython3v3
+Running&lt;span class="w"&gt; &lt;/span&gt;virtualenv&lt;span class="w"&gt; &lt;/span&gt;with&lt;span class="w"&gt; &lt;/span&gt;interpreter&lt;span class="w"&gt; &lt;/span&gt;/usr/bin/python3.3
+Using&lt;span class="w"&gt; &lt;/span&gt;base&lt;span class="w"&gt; &lt;/span&gt;prefix&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/usr&amp;#39;&lt;/span&gt;
+New&lt;span class="w"&gt; &lt;/span&gt;python&lt;span class="w"&gt; &lt;/span&gt;executable&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;proyPython3v3/bin/python3.3
+Also&lt;span class="w"&gt; &lt;/span&gt;creating&lt;span class="w"&gt; &lt;/span&gt;executable&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;proyPython3v3/bin/python
+Installing&lt;span class="w"&gt; &lt;/span&gt;setuptools,&lt;span class="w"&gt; &lt;/span&gt;pip...done.
+&lt;span class="o"&gt;(&lt;/span&gt;proyPython3v3&lt;span class="o"&gt;)[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$
+&lt;span class="o"&gt;(&lt;/span&gt;proyPython3v3&lt;span class="o"&gt;)[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;deactivate
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="python"></category><category term="virtualenvwrapper"></category><category term="virtualenv"></category><category term="python"></category><category term="howto"></category></entry><entry><title>Hola Mundo!! 👋</title><link href="http://blog.akb.soy/2017/09/helloWorld/" rel="alternate"></link><published>2017-09-02T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2017-09-02:/2017/09/helloWorld/</id><summary type="html">&lt;p&gt;Bienvenida al Blog 😀&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sean ustedes &lt;strong&gt;bienvenidos&lt;/strong&gt; a este espacio digital, donde busco devolver&lt;br&gt;
+información relevante para todos aquellos curios@s informátic@s que siempre 
+buscan sacarle el mayor provecho a todo lo que tienen a su alcance. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Espero les sirva de utilidad los posts que se publicarán en este blog.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Aprovecho para agradecer a todas las personas que trabajan diariamente por 
+mantener una internet accesible, segura y de libre conocimiento.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gracias a tod@s esas mentes inquietas&lt;/strong&gt; 
+&lt;em&gt;todos los días aprendemos algo nuevo&lt;/em&gt; 😀&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Seamos felices!!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;HappyHacking!!&lt;/em&gt;&lt;/p&gt;</content><category term="personal"></category><category term="bienvenida"></category><category term="akb"></category></entry></feed>

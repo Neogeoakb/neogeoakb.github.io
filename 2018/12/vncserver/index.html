@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Acceso Remoto en GnuLinux a través de VNC 💻</title>
+
+  <meta name="description" content="Curioso Informático | Ethical Hacking | GnuLinux | Infraestructura | Ciberseguridad - Soy AkB | HappyHacking | Akb Kompany" />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+<link href="../../../2018/12/vncserver/" rel="canonical" />
+  <!-- Feed -->
+
+  <link rel="stylesheet" type="text/css" href="../../../theme/css/style.css">
+
+  <!-- CSS specified by the user -->
+
+
+  <link href="../../../assets/css/myblog.css" type="text/css" rel="stylesheet" />
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <script>
+    var siteUrl = '../../..';
+  </script>
+
+  <script>
+    var localTheme = localStorage.getItem('attila_theme');
+    switch (localTheme) {
+      case 'dark':
+        document.documentElement.classList.add('theme-dark');
+        break;
+      case 'light':
+        document.documentElement.classList.add('theme-light');
+        break;
+      default:
+        break;
+    }
+  </script>
+
+
+
+
+
+
+
+    <meta name="description" content="Trabajando con VNC Server y x11vnc para permitir el acceso remoto a una sesión abierta. 💻">
+
+    <meta name="author" content="fercho">
+
+    <meta name="tags" content="vnc">
+    <meta name="tags" content="x11vnc">
+    <meta name="tags" content="remmina">
+    <meta name="tags" content="gnulinux">
+    <meta name="tags" content="ssh">
+    <meta name="tags" content="howto">
+    <meta name="tags" content="fedora">
+
+
+
+
+<!-- Open Graph -->
+<meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="Blog | AkB"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:title" content="Acceso Remoto en GnuLinux a través de VNC 💻"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:description" content="Trabajando con VNC Server y x11vnc para permitir el acceso remoto a una sesión abierta. 💻"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:locale" content="en_US"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:url" content="../../../2018/12/vncserver/"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:type" content="article"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:published_time" content="2018-12-02 00:00:00-05:00"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:modified_time" content="2025-03-21 02:18:32.930714-05:00"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:author" content="../../../author/fercho/">
+<meta prefix="og: http://ogp.me/ns#" property="article:section" content="gnu-linux"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:tag" content="vnc"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:tag" content="x11vnc"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:tag" content="remmina"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:tag" content="gnulinux"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:tag" content="ssh"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:tag" content="howto"/>
+<meta prefix="og: http://ogp.me/ns#" property="article:tag" content="fedora"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:image" content="../../../theme/images/home-bg.jpg">
+
+<!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@neogeoakb">
+    <meta name="twitter:title" content="Acceso Remoto en GnuLinux a través de VNC 💻">
+    <meta name="twitter:url" content="../../../2018/12/vncserver/">
+
+        <meta name="twitter:image:src" content="../../../theme/images/home-bg.jpg">
+
+      <meta name="twitter:description" content="Trabajando con VNC Server y x11vnc para permitir el acceso remoto a una sesión abierta. 💻">
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "Acceso Remoto en GnuLinux a través de VNC 💻",
+  "headline": "Acceso Remoto en GnuLinux a través de VNC 💻",
+  "datePublished": "2018-12-02 00:00:00-05:00",
+  "dateModified": "2025-03-21 02:18:32.930714-05:00",
+  "author": {
+    "@type": "Person",
+    "name": "Fercho",
+    "url": "../../../author/fercho/"
+  },
+  "image": "../../../theme/images/post-bg.jpg",
+  "url": "../../../2018/12/vncserver/",
+  "description": "Trabajando con VNC Server y x11vnc para permitir el acceso remoto a una sesión abierta. 💻"
+}
+</script>
+</head>
+
+
+
+
+
+
+
+
+
+<body class="category-template">
+
+<div class="nav-header">
+  <nav class="nav-wrapper" aria-label="Main">
+<ul>
+
+    <li class="nav-Inicio " role="presentation"><a href="/"><span>Inicio</span></a></li>
+    <li class="nav-Archivo " role="presentation"><a href="/archive/"><span>Archivo</span></a></li>
+    <li class="nav-Tags " role="presentation"><a href="/tag/"><span>Tags</span></a></li>
+    <li class="nav-About " role="presentation"><a href="/pages/about-site/"><span>About</span></a></li>
+    <li class="nav-Akb Kompany " role="presentation"><a href="https://kompany.work"><span>Akb Kompany</span></a></li>
+    <li class="nav-NFT Latino XYZ " role="presentation"><a href="https://nftlatino.xyz"><span>NFT Latino XYZ</span></a></li>
+
+</ul>
+<ul class="nav-meta">
+    <li class="nav-linkedin"><a aria-label="Linkedin" href="https://www.linkedin.com/in/soyakb" target="_blank"><i class="icon icon-linkedin" aria-hidden="true"></i>
+    <span>Linkedin</span>
+    </a></li>
+    <li class="nav-twitter"><a aria-label="Twitter" href="https://twitter.com/neogeoakb" target="_blank"><i class="icon icon-twitter" aria-hidden="true"></i>
+    <span>Twitter</span>
+    </a></li>
+    <li class="nav-github"><a aria-label="Github" href="https://github.com/neogeoakb" target="_blank"><i class="icon icon-github" aria-hidden="true"></i>
+    <span>Github</span>
+    </a></li>
+  <li class="nav-search" style="display: none;">
+    <a title="Search">
+      <i class="icon icon-search" aria-hidden="true"></i>
+      <span>Search</span>
+    </a>
+  </li>
+</ul>  </nav>
+
+  <div class="nav-wrapper-control">
+    <div class="inner">
+      <a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+      <a class="nav-search" title="Search" role="button" style="display: none;"><i class="icon icon-search" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</div>
+<div class="nav-close" role="button" aria-label="Close"></div>
+  <section id="wrapper" class="page-wrapper">
+    <!-- Progressbar -->
+    <div class="progress-container">
+      <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="post-header ">
+      <div class="inner">
+        <span class="post-info">
+          <span class="post-type">Article</span>
+          <span class="post-count">Gnu-Linux</span>
+        </span>
+        <h1 class="post-title">Acceso Remoto en GnuLinux a través de VNC 💻</h1>
+        <div class="post-meta">
+          <div class="post-meta-avatars">
+
+
+            <figure class="post-meta-avatar avatar">
+              <a class="author-avatar" href="../../../author/fercho/">
+                <img class="author-profile-image" src="../../../assets/images/perfil_RS.jpeg" alt="Fernando Arias" />
+              </a>
+            </figure>
+          </div>
+
+          <h4 class="post-meta-author">
+            Fernando Arias
+          </h4>
+          <time datetime="02 Dec 2018">02 Dec 2018</time>
+          &bull; 2 min read
+        </div>
+      </div>
+    </header>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+          <section class="post-content">
+            <h2>Instalación y Configuración</h2>
+<ol>
+<li>Verificar si se encuentra instalado:  <ul>
+<li><code>sudo rpm -q vnc-server</code>  </li>
+</ul>
+</li>
+<li>Si no existe hay que instalar el siguiente paquete:  <ul>
+<li><code>sudo yum install vnc-server</code>  </li>
+</ul>
+</li>
+<li>
+<p>Crear password VNC para usuarios del sistema.<br>
+Una vez logueado el usuario debera ejecutar:  </p>
+<ul>
+<li><code>vncpasswd</code><br>
+El comando crea el directorio <code>~/.vnc</code> y el archivo <code>passwd</code>  <blockquote>
+<p><strong>Importante:</strong> Agregar una contraseña robusta, 
+  porque el algoritmo utilizado es vulnerable.  </p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Para iniciar VNC en una sesión ya establecida es necesario el paquete x11vnc  </p>
+<ul>
+<li><code>sudo yum install x11vnc</code>  </li>
+</ul>
+</li>
+</ol>
+<h3>Permitir conexión <strong>insegura</strong> VNC hacia una sesión abierta</h3>
+<ol>
+<li>Dentro de la sesión abierta ejecutar lo siguiente:  <ul>
+<li><code>x11vnc -forever -rfbauth ~/.vnc/passwd</code>  </li>
+</ul>
+</li>
+</ol>
+<h3>Conexión <strong>insegura</strong> por Cliente VNC</h3>
+<ol>
+<li>Verificar si se encuentra algún cliente instalado:  <ul>
+<li><code>sudo rpm -q vnc</code>  </li>
+</ul>
+</li>
+<li>Si no existe, puedes instalar alguno de los siguiente clientes:  <ul>
+<li><code>sudo yum install vnc</code>  ó</li>
+<li><code>yum install remmina</code>  </li>
+</ul>
+</li>
+<li>Configurar en el cliente la sesión VNC a conectarse.  <ul>
+<li>IP del Servidor VNC   </li>
+<li>Puerto de conexion VNC-Server  </li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>Agregué la conexión no recomendable para poner en conocimiento 
+  que la misma <strong>es insegura</strong> porque todo el tráfico va en texto plano.</p>
+</blockquote>
+<h2>Conexión a través de ssh/x11vnc desde el cliente</h2>
+<ul>
+<li>Iniciar la conexión, a través de SSH desde el cliente:  </li>
+</ul>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-t<span class="w"> </span>-L<span class="w"> </span><span class="m">5900</span>:localhost:5900<span class="w"> </span>usuario@IPdeRed<span class="w"> </span><span class="s1">&#39;x11vnc -localhost -display :0&#39;</span>
+</code></pre></div>
+
+<ul>
+<li>Configurar el Cliente VNC para <em>localhost</em>.  </li>
+</ul>
+<h2>URLs</h2>
+<p><a href="https://wiki.centos.org/es/HowTos/VNC-Server">VNC-Server CentOs</a><br>
+<a href="http://www.karlrunge.com/x11vnc/">x11vnc</a><br>
+<a href="https://www.atareao.es/ubuntu/gestion-remota-con-ubuntu-ssh-y-x11vnc/#">ssh-y-x11vnc</a><br>
+<a href="https://wiki.archlinux.org/index.php/x11vnc">x11vnc_tutorial</a><br>
+<a href="https://es.godaddy.com/help/como-configurar-escritorio-remoto-para-su-servidor-dedicado-linux-centos-o-fedora-6012">VNC_Server_CentOs</a><br>
+<a href="https://askubuntu.com/questions/330983/no-desktop-showing-in-ubuntu-13-04-via-vnc-on-a-vps">Configuracion_xstartup</a>  </p>
+<h2>Consideraciones de Seguridad Informática</h2>
+<p>He realizado algunas pruebas para agregar SSL al servicio VNC y utilizarla con 
+el cliente VNC Viewer (Real VNC), pero aún tengo algunos errores por lo cual 
+parte de la guía públicada en este post no es segura. Se recomienda hacer uso 
+de VNC a través de ssh/x11vnc</p>
+<p>Para añadir mayor seguridad a la conexión VNC es necesario agregar reglas de Iptables 
+ó TCPWrappers para permitir una conexión segregada para determinados equipos. 
+También se puede añadir permisos al servicio sshd para controlar que usuarios pueden 
+conectarse a través de <code>ssh/x11vnc</code> cuando sea necesario.  </p>
+<p><strong>No se recomienda dejar activo el servicio de VNC</strong> y las configuraciones 
+publicadas en este post se debe utilizar unicamente cuando sea necesario.  </p>
+<p>Si conocen de algún metodo seguro por favor añadirlo en sus comentarios. 
+Agradezco el tiempo de lectura y las sugerencias para mejorar el post.  </p>
+          </section>
+
+
+          <section class="post-footer" >
+            <div class="post-share">
+              <span class="post-info-label">Share</span>
+              <a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=Acceso Remoto en GnuLinux a través de VNC 💻&amp;url=../../../2018/12/vncserver/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="icon icon-twitter" aria-hidden="true"></i><span class="hidden">Twitter</span>
+              </a>
+              <a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=../../../2018/12/vncserver/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                <i class="icon icon-facebook" aria-hidden="true"></i><span class="hidden">Facebook</span>
+              </a>
+              <a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=../../../2018/12/vncserver/&amp;title=Acceso Remoto en GnuLinux a través de VNC 💻" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+                <i class="icon icon-linkedin" aria-hidden="true"></i><span class="hidden">LinkedIn</span>
+              </a>
+              <a title="Email" aria-label="Email" class="email" href="mailto:?subject=Acceso Remoto en GnuLinux a través de VNC 💻&amp;body=../../../2018/12/vncserver/">
+                <i class="icon icon-mail" aria-hidden="true"></i><span class="hidden">Email</span>
+              </a>
+              <div class="clear"></div>
+            </div>
+
+            <aside class="post-tags">
+<a href="../../../tag/vnc/">vnc</a><a href="../../../tag/x11vnc/">x11vnc</a><a href="../../../tag/remmina/">remmina</a><a href="../../../tag/gnulinux/">gnulinux</a><a href="../../../tag/ssh/">ssh</a><a href="../../../tag/howto/">howto</a><a href="../../../tag/fedora/">fedora</a>            </aside>
+
+            <div class="clear"></div>
+
+
+          </section>
+
+          <script type="text/javascript">
+            var disqus = 'neogeoakb';
+            var disqus_shortname = 'neogeoakb';
+            var disqus_identifier = 'vncserver';
+            var disqus_url = '../../../2018/12/vncserver/';
+          </script>
+          <noscript>Please enable JavaScript to view the comments.</noscript>
+          <section class="post-comments">
+              <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="vncserver" >Show Comments</a>
+            <div id="disqus_thread"></div>
+          </section>
+
+          <aside class="post-nav">
+            <a class="post-nav-prev" href="../../../2018/10/commandGnuLinux/">
+              <section class="post-nav-teaser">
+                <i class="icon icon-arrow-right"></i>
+                  <h2 class="post-nav-title">Comandos prácticos en GnuLinux 🐃🐧</h2>
+                <p class="post-nav-excerpt">Listado de comandos de uso práctico en GnuLinux 😎💻</p>
+                <p class="post-nav-meta"><time datetime="14 Oct 2018">14 Oct 2018</time></p>
+              </section>
+            </a>
+            <div class="clear"></div>
+          </aside>
+
+        </div>
+      </article>
+    </main>
+    <div class="nav-footer">
+      <nav class="nav-wrapper" aria-label="Footer">
+        <span class="nav-copy">Blog | AkB &copy; 2023
+        </span>
+        <span class="nav-credits">
+
+
+
+          Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a> &bull; Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a> &bull;
+          <a class="menu-item js-theme" href="#" data-system="System theme" data-dark="Dark theme" data-light="Light theme">
+            <span class="theme-icon"></span><span class="theme-text">System theme</span>
+          </a>
+        </span>
+      </nav>
+    </div>
+
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script type="text/javascript" src="../../../theme/js/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="../../../theme/js/script.js"></script>
+
+<script type="text/javascript">
+    var disqus_shortname = 'neogeoakb';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+  <!-- 	The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in article.html, but it needs to be included down here, after jQuery has already loaded. -->
+
+<!-- Add MathJax and FontAwesome for Asciidoc -->\
+<script>
+  $(document).ready(function () {
+    var viewport = $(window);
+    var post = $('.post-content');
+    // Responsive videos with fitVids
+    post.fitVids();
+
+    var mdSelector=".highlight pre";
+    var rstSelector=".highlight pre";
+    // For ":source-highlighter: highlight.js`" in asciidoc
+    var adocSelector="pre.highlight > code[data-lang]"
+    var selector=mdSelector;
+    // Format code blocks and add line numbers
+    function codestyling() {
+      $(selector).each(function(i, e) {
+        // Code highlight
+        hljs.highlightElement(e);
+        // No lines for plain text blocks
+        if (!$(this).hasClass('language-text')) {
+          var code = $(this);
+          // Calculate amount of lines
+          var lines = code.html().split(/\n(?!$)/g).length;
+          var numbers = [];
+          if (lines > 1) {
+            lines++;
+          }
+          for (i = 1; i < lines; i++) {
+            numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+          }
+          code.parent().append('<div class="lines">' + numbers + '</div>');
+        }
+      });
+    }
+
+    // Format code blocks only
+    function codestylingWithoutLineNumbers() {
+      $(selector).each(function(i, e) {
+        // Code highlight
+        hljs.highlightElement(e);
+      });
+    }
+
+    codestylingWithoutLineNumbers();
+    // Reading progress bar on window top
+    function readingProgress() {
+      var postBottom = post.offset().top + post.height();
+      var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+    }
+    readingProgress();
+    // Trigger reading progress
+    viewport.on({
+      'scroll': function() {
+        readingProgress();
+      },
+      'resize': function() {
+        readingProgress();
+      },
+      'orientationchange': function() {
+        readingProgress();
+      }
+    });
+
+      var disqus = 'neogeoakb';
+      $('#show-disqus').on('click', function() {
+        $.ajax({
+          type: "GET",
+          url: "//" + disqus + ".disqus.com/embed.js",
+          dataType: "script",
+          cache: true
+        });
+        $(this).parent().addClass('activated');
+      });
+  });
+</script>
+</body>
+
+</html>
