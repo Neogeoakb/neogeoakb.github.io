@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Blog | AkB - virtualizacion</title><link href="http://fercho.akb.soy/" rel="alternate"></link><link href="http://fercho.akb.soy/feeds/virtualizacion.atom.xml" rel="self"></link><id>http://fercho.akb.soy/</id><updated>2025-03-21T02:18:32-05:00</updated><subtitle>HappyHacking!!</subtitle><entry><title>Tips Virtual Box 💻</title><link href="http://fercho.akb.soy/2017/11/virtualBox-tips/" rel="alternate"></link><published>2017-11-05T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:fercho.akb.soy,2017-11-05:/2017/11/virtualBox-tips/</id><summary type="html">&lt;p&gt;Compartir carpetas en tus Maquinas virtuales con Gnu-Linux 🐧&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Carpetas Compartidas en VM Gnu-Linux&lt;/h1&gt;
+&lt;p&gt;Para compartir carpetas dentro de nuestro Sistema Operativo virtualizado, 
+debemos agregar a nuestro usuario por defecto al grupo &lt;code&gt;vboxsf&lt;/code&gt;.  &lt;/p&gt;
+&lt;h2&gt;Procedimiento&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;usermod -G vboxsf -a usuario                                                   &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Bitacora:&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;root@usuario-VM:~#&lt;span class="w"&gt; &lt;/span&gt;groups&lt;span class="w"&gt; &lt;/span&gt;usuario&lt;span class="w"&gt;                                                 &lt;/span&gt;
+usuario&lt;span class="w"&gt; &lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;usuario&lt;span class="w"&gt; &lt;/span&gt;adm&lt;span class="w"&gt; &lt;/span&gt;cdrom&lt;span class="w"&gt; &lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dip&lt;span class="w"&gt; &lt;/span&gt;plugdev&lt;span class="w"&gt; &lt;/span&gt;lpadmin&lt;span class="w"&gt; &lt;/span&gt;sambashare&lt;span class="w"&gt;                   &lt;/span&gt;
+root@usuario-VM:~#&lt;span class="w"&gt; &lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;/etc/group&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;vbox&lt;span class="w"&gt;                                    &lt;/span&gt;
+vboxsf:x:999:&lt;span class="w"&gt;                                                                   &lt;/span&gt;
+
+root@usuario-VM:~#&lt;span class="w"&gt; &lt;/span&gt;usermod&lt;span class="w"&gt; &lt;/span&gt;-G&lt;span class="w"&gt; &lt;/span&gt;vboxsf&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;usuario&lt;span class="w"&gt;                                   &lt;/span&gt;
+
+root@usuario-VM:~#&lt;span class="w"&gt; &lt;/span&gt;groups&lt;span class="w"&gt; &lt;/span&gt;usuario&lt;span class="w"&gt;                                                 &lt;/span&gt;
+usuario&lt;span class="w"&gt; &lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;usuario&lt;span class="w"&gt; &lt;/span&gt;adm&lt;span class="w"&gt; &lt;/span&gt;cdrom&lt;span class="w"&gt; &lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dip&lt;span class="w"&gt; &lt;/span&gt;plugdev&lt;span class="w"&gt; &lt;/span&gt;lpadmin&lt;span class="w"&gt; &lt;/span&gt;sambashare&lt;span class="w"&gt; &lt;/span&gt;vboxsf&lt;span class="w"&gt;            &lt;/span&gt;
+root@usuario-VM:~#&lt;span class="w"&gt;                                                               &lt;/span&gt;
+
+root@usuario-VM:~#&lt;span class="w"&gt; &lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;/etc/group&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;vbox&lt;span class="w"&gt;                                    &lt;/span&gt;
+vboxsf:x:999:usuario&lt;span class="w"&gt;                                                                                                                                            &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h1&gt;Recuperar VM despues de eliminar un Snapshot&lt;/h1&gt;
+&lt;p&gt;Recientemente me pasó, que al realizar un merge de los Snapshot, 
+Virtual Box se me quedo colgado y no termino totalmente sus procesos porque 
+al final opte por finalizar la tarea que estaba ejecutando (lo cual no recomiendo) 
+y luego me dió un error indicando que no encuentra el Snapshot que estaba 
+eliminando con el merge.&lt;/p&gt;
+&lt;p&gt;Googleando un poco di con la solución a este problema: 
+* &lt;a href="https://superuser.com/questions/846162/virtualbox-error-after-deleting-snapshot"&gt;virtualbox-error-after-deleting-snapshot&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Dependiendo del Sistema Operativo en el cual tengas Virtual Box instalado 
+cambiara el binario de &lt;strong&gt;VBoxManage&lt;/strong&gt;, en mi caso ese problema me suscedio en 
+un Windows, por ello los comandos utilizados son los siguientes:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;VBoxManage&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="n"&gt;internalcommands&lt;/span&gt; &lt;span class="n"&gt;sethduuid&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;pathVM\Snapshots\{90d41180-476b-4a60-bc66-2e82ceb4c641}.vmdk&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;90d41180&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;476b&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;4a60-bc66&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;2e82ceb4c641&lt;/span&gt; 
+&lt;span class="n"&gt;Resultado&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;UUID&lt;/span&gt; &lt;span class="n"&gt;changed&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;90d41180&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;476b&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;4a60-bc66&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;2e82ceb4c641&lt;/span&gt;
+&lt;span class="n"&gt;VBoxManage&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="n"&gt;internalcommands&lt;/span&gt; &lt;span class="n"&gt;sethdparentuuid&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;pathVM\Snapshots\{90d41180-476b-4a60-bc66-2e82ceb4c641}.vmdk&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;04756946&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;8820&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;417b-af6e&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;3b1e5f62f747&lt;/span&gt;
+&lt;span class="n"&gt;Resultado&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;UUID&lt;/span&gt; &lt;span class="n"&gt;changed&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;04756946&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;8820&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;417b-af6e&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;3b1e5f62f747&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Antes de encender la VM, revisé el archivo &lt;code&gt;.vbox&lt;/code&gt; buscando referencias del 
+Snapshots eliminado, editando el archivo con un notepad y borrando las lineas 
+donde se tenian esas referencias.&lt;/p&gt;
+&lt;p&gt;De esa manera, pude recuperar la Virtual Machine, despues de un error al 
+eliminar un Snapshot. &lt;strong&gt;#HappyHacking&lt;/strong&gt;&lt;/p&gt;</content><category term="virtualizacion"></category><category term="gnulinux"></category><category term="fedora"></category><category term="virtualbox"></category><category term="howto"></category></entry><entry><title>Trabajando con Virtual Box 💻</title><link href="http://fercho.akb.soy/2017/10/virtualBox-gnulinux/" rel="alternate"></link><published>2017-10-27T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:fercho.akb.soy,2017-10-27:/2017/10/virtualBox-gnulinux/</id><summary type="html">&lt;p&gt;VirtualBox, guia de instalación 🐧&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://www.virtualbox.org/"&gt;Virtual Box&lt;/a&gt; es una herramienta muy útil para virtualizar varios Sistemas
+Operativos utilizado para pruebas de todo tipo.&lt;/p&gt;
+&lt;p&gt;Algo común es que la configuración del BIOS evita virtualizar Sistemas
+Operativos de 64bits.&lt;/p&gt;
+&lt;p&gt;Por ello debemos Habilitar la Virtualización en la BIOS, que por lo general
+esta dentro del Menú Seguridad ó Configuración del Sistema (esto varia
+dependiendo de la marca de Mainboard), dentro de esos menús buscamos alguna
+Opción que mencione la Virtualización y la "habilitamos".&lt;/p&gt;
+&lt;p&gt;Si tienen dudas de como hacerlo pueden visitar el siguiente &lt;a href="https://www.youtube.com/watch?v=7upf3Sm_gNk"&gt;video&lt;/a&gt; que
+enconté en Youtube, existen muchas guías de como hacerlo y estas varían
+según la marca de Mainboard.&lt;/p&gt;
+&lt;h2&gt;Instalación&lt;/h2&gt;
+&lt;p&gt;La guia esta echa para usuarios de Gnu-Linux y puntualmente para las Distros de
+CentOs/RedHat/Fedora que tienen repositorios similares.&lt;/p&gt;
+&lt;p&gt;Creamos el Repositorio de Virtual Box en:  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cd /etc/yum.repos.d/&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;vim virtualbox.repo&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;Añadimos el siguiente texto:  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Fedora&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$releasever&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$basearch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;VirtualBox
+&lt;span class="nv"&gt;baseurl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://download.virtualbox.org/virtualbox/rpm/fedora/&lt;span class="nv"&gt;$releasever&lt;/span&gt;/&lt;span class="nv"&gt;$basearch&lt;/span&gt;
+&lt;span class="nv"&gt;enabled&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="nv"&gt;gpgcheck&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="nv"&gt;gpgkey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;https://www.virtualbox.org/download/oracle_vbox.asc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Ejecutamos los siguientes comandos:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;wget&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;virtualbox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;virtualbox&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;debian&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;oracle_vbox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;asc&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rpm --import oracle_vbox.asc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yum install VirtualBox&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;URLs Guia&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.virtualbox.org/wiki/Linux_Downloads"&gt;Guia Oficial VirtualBox&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Paquetes dependientes de Virtual Box - VBox_Tools&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;yum update kernel&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yum install dkms binutils patch&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yum install gcc make libgomp glibc-headers&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yum install kernel-headers kernel-devel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;La instalación de estos paquetes pueden evitar errores durante la
+instalación del Virtual Box, o cuando se instalen las VBox_Tools.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Generalmente los errores suceden cuando no coincide la versión del Kernel con
+  la versión del kernel-headers y kernel-devel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Errores durante la instalación Virtual Box&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Creating&lt;span class="w"&gt; &lt;/span&gt;group&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;vboxusers&amp;#39;&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;VM&lt;span class="w"&gt; &lt;/span&gt;users&lt;span class="w"&gt; &lt;/span&gt;must&lt;span class="w"&gt; &lt;/span&gt;be&lt;span class="w"&gt; &lt;/span&gt;member&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;that&lt;span class="w"&gt; &lt;/span&gt;group!
+
+No&lt;span class="w"&gt; &lt;/span&gt;precompiled&lt;span class="w"&gt; &lt;/span&gt;module&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;this&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;found&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="w"&gt; &lt;/span&gt;trying&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;one.&lt;span class="w"&gt; &lt;/span&gt;Messages
+emitted&lt;span class="w"&gt; &lt;/span&gt;during&lt;span class="w"&gt; &lt;/span&gt;module&lt;span class="w"&gt; &lt;/span&gt;compilation&lt;span class="w"&gt; &lt;/span&gt;will&lt;span class="w"&gt; &lt;/span&gt;be&lt;span class="w"&gt; &lt;/span&gt;logged&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;/var/log/vbox-install.log.&lt;span class="w"&gt;  &lt;/span&gt;
+
+Stopping&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Recompiling&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;FALLÓ&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Look&lt;span class="w"&gt; &lt;/span&gt;at&lt;span class="w"&gt; &lt;/span&gt;/var/log/vbox-install.log&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;find&lt;span class="w"&gt; &lt;/span&gt;out&lt;span class="w"&gt; &lt;/span&gt;what&lt;span class="w"&gt; &lt;/span&gt;went&lt;span class="w"&gt; &lt;/span&gt;wrong&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Solución:&lt;/strong&gt; Instalar los paquetes dependientes y ejecutar:&lt;br&gt;
+  * &lt;code&gt;/etc/init.d/vboxdrv setup&lt;/code&gt;  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# /etc/init.d/vboxdrv setup&lt;/span&gt;
+Stopping&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt;                         &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Uninstalling&lt;span class="w"&gt; &lt;/span&gt;old&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;DKMS&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Trying&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;register&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;using&lt;span class="w"&gt; &lt;/span&gt;DKMS&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Starting&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt;                         &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Errrores durante la instalación VBox_Tools&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;VBOXADDITIONS_4.3.32_103443&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# ./VBoxLinuxAdditions.run&lt;/span&gt;
+Verifying&lt;span class="w"&gt; &lt;/span&gt;archive&lt;span class="w"&gt; &lt;/span&gt;integrity...&lt;span class="w"&gt; &lt;/span&gt;All&lt;span class="w"&gt; &lt;/span&gt;good.
+Uncompressing&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;.3.32&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Linux............
+VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;installer
+Copying&lt;span class="w"&gt; &lt;/span&gt;additional&lt;span class="w"&gt; &lt;/span&gt;installer&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;...
+Installing&lt;span class="w"&gt; &lt;/span&gt;additional&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;...
+Removing&lt;span class="w"&gt; &lt;/span&gt;existing&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;non-DKMS&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Building&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules
+The&lt;span class="w"&gt; &lt;/span&gt;headers&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;current&lt;span class="w"&gt; &lt;/span&gt;running&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;were&lt;span class="w"&gt; &lt;/span&gt;not&lt;span class="w"&gt; &lt;/span&gt;found.&lt;span class="w"&gt; &lt;/span&gt;If&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;following
+module&lt;span class="w"&gt; &lt;/span&gt;compilation&lt;span class="w"&gt; &lt;/span&gt;fails&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;this&lt;span class="w"&gt; &lt;/span&gt;could&lt;span class="w"&gt; &lt;/span&gt;be&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;reason.
+The&lt;span class="w"&gt; &lt;/span&gt;missing&lt;span class="w"&gt; &lt;/span&gt;package&lt;span class="w"&gt; &lt;/span&gt;can&lt;span class="w"&gt; &lt;/span&gt;be&lt;span class="w"&gt; &lt;/span&gt;probably&lt;span class="w"&gt; &lt;/span&gt;installed&lt;span class="w"&gt; &lt;/span&gt;with
+yum&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;kernel-devel-4.8.6-300.fc25.x86_64
+
+Building&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;module&lt;span class="w"&gt;                   &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;FALLÓ&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;Look&lt;span class="w"&gt; &lt;/span&gt;at&lt;span class="w"&gt; &lt;/span&gt;/var/log/vboxadd-install.log&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;find&lt;span class="w"&gt; &lt;/span&gt;out&lt;span class="w"&gt; &lt;/span&gt;what&lt;span class="w"&gt; &lt;/span&gt;went&lt;span class="w"&gt; &lt;/span&gt;wrong&lt;span class="o"&gt;)&lt;/span&gt;
+Doing&lt;span class="w"&gt; &lt;/span&gt;non-kernel&lt;span class="w"&gt; &lt;/span&gt;setup&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Installing&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;Window&lt;span class="w"&gt; &lt;/span&gt;System&lt;span class="w"&gt; &lt;/span&gt;drivers
+Warning:&lt;span class="w"&gt; &lt;/span&gt;unsupported&lt;span class="w"&gt; &lt;/span&gt;pre-release&lt;span class="w"&gt; &lt;/span&gt;version&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;X.Org&lt;span class="w"&gt; &lt;/span&gt;Server&lt;span class="w"&gt; &lt;/span&gt;installed.&lt;span class="w"&gt;  &lt;/span&gt;Not
+installing&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;X.Org&lt;span class="w"&gt; &lt;/span&gt;drivers.
+&lt;span class="w"&gt;                                                           &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Installing&lt;span class="w"&gt; &lt;/span&gt;graphics&lt;span class="w"&gt; &lt;/span&gt;libraries&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;desktop&lt;span class="w"&gt; &lt;/span&gt;services&lt;span class="w"&gt; &lt;/span&gt;componen&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Otros errores:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;VBOXADDITIONS_4.3.32_103443&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# ./VBoxLinuxAdditions.run&lt;/span&gt;
+Verifying&lt;span class="w"&gt; &lt;/span&gt;archive&lt;span class="w"&gt; &lt;/span&gt;integrity...&lt;span class="w"&gt; &lt;/span&gt;All&lt;span class="w"&gt; &lt;/span&gt;good.
+Uncompressing&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;.3.32&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Linux............
+VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;installer
+Removing&lt;span class="w"&gt; &lt;/span&gt;installed&lt;span class="w"&gt; &lt;/span&gt;version&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;.3.32&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions...
+Copying&lt;span class="w"&gt; &lt;/span&gt;additional&lt;span class="w"&gt; &lt;/span&gt;installer&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;...
+Installing&lt;span class="w"&gt; &lt;/span&gt;additional&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;...
+Removing&lt;span class="w"&gt; &lt;/span&gt;existing&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;DKMS&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Removing&lt;span class="w"&gt; &lt;/span&gt;existing&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;non-DKMS&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Building&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules
+Building&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;module&lt;span class="w"&gt;                   &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;FALLÓ&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;Look&lt;span class="w"&gt; &lt;/span&gt;at&lt;span class="w"&gt; &lt;/span&gt;/var/log/vboxadd-install.log&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;find&lt;span class="w"&gt; &lt;/span&gt;out&lt;span class="w"&gt; &lt;/span&gt;what&lt;span class="w"&gt; &lt;/span&gt;went&lt;span class="w"&gt; &lt;/span&gt;wrong&lt;span class="o"&gt;)&lt;/span&gt;
+Doing&lt;span class="w"&gt; &lt;/span&gt;non-kernel&lt;span class="w"&gt; &lt;/span&gt;setup&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Installing&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;Window&lt;span class="w"&gt; &lt;/span&gt;System&lt;span class="w"&gt; &lt;/span&gt;drivers
+Warning:&lt;span class="w"&gt; &lt;/span&gt;unsupported&lt;span class="w"&gt; &lt;/span&gt;pre-release&lt;span class="w"&gt; &lt;/span&gt;version&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;X.Org&lt;span class="w"&gt; &lt;/span&gt;Server&lt;span class="w"&gt; &lt;/span&gt;installed.&lt;span class="w"&gt;  &lt;/span&gt;Not
+installing&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;X.Org&lt;span class="w"&gt; &lt;/span&gt;drivers.
+&lt;span class="w"&gt;                                                           &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+Installing&lt;span class="w"&gt; &lt;/span&gt;graphics&lt;span class="w"&gt; &lt;/span&gt;libraries&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;desktop&lt;span class="w"&gt; &lt;/span&gt;services&lt;span class="w"&gt; &lt;/span&gt;componen&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;OK&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;VBOXADDITIONS_4.3.32_103443&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Solución:&lt;/strong&gt; Instalar los paquetes dependientes y ejecutar:&lt;br&gt;
+  * &lt;code&gt;./VBoxLinuxAdditions.run --nox11&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;VBOXADDITIONS_5.1.10_112026&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# ./VBoxLinuxAdditions.run --nox11&lt;/span&gt;
+Verifying&lt;span class="w"&gt; &lt;/span&gt;archive&lt;span class="w"&gt; &lt;/span&gt;integrity...&lt;span class="w"&gt; &lt;/span&gt;All&lt;span class="w"&gt; &lt;/span&gt;good.
+Uncompressing&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;.1.10&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Linux...........
+VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;installer
+Removing&lt;span class="w"&gt; &lt;/span&gt;installed&lt;span class="w"&gt; &lt;/span&gt;version&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;.1.10&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions...
+Copying&lt;span class="w"&gt; &lt;/span&gt;additional&lt;span class="w"&gt; &lt;/span&gt;installer&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;...
+Installing&lt;span class="w"&gt; &lt;/span&gt;additional&lt;span class="w"&gt; &lt;/span&gt;modules&lt;span class="w"&gt; &lt;/span&gt;...
+vboxadd.sh:&lt;span class="w"&gt; &lt;/span&gt;Building&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions&lt;span class="w"&gt; &lt;/span&gt;kernel&lt;span class="w"&gt; &lt;/span&gt;modules.
+vboxadd.sh:&lt;span class="w"&gt; &lt;/span&gt;Starting&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;VirtualBox&lt;span class="w"&gt; &lt;/span&gt;Guest&lt;span class="w"&gt; &lt;/span&gt;Additions.
+
+Warning:&lt;span class="w"&gt; &lt;/span&gt;unsupported&lt;span class="w"&gt; &lt;/span&gt;pre-release&lt;span class="w"&gt; &lt;/span&gt;version&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;X.Org&lt;span class="w"&gt; &lt;/span&gt;Server&lt;span class="w"&gt; &lt;/span&gt;installed.&lt;span class="w"&gt;  &lt;/span&gt;Not
+installing&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;X.Org&lt;span class="w"&gt; &lt;/span&gt;drivers.
+&lt;span class="o"&gt;[&lt;/span&gt;root@localhost&lt;span class="w"&gt; &lt;/span&gt;VBOXADDITIONS_5.1.10_112026&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="virtualizacion"></category><category term="gnulinux"></category><category term="fedora"></category><category term="virtualbox"></category><category term="howto"></category></entry></feed>

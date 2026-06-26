@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Blog | AkB - gnu-linux</title><link href="http://fercho.akb.soy/" rel="alternate"></link><link href="http://fercho.akb.soy/feeds/gnu-linux.atom.xml" rel="self"></link><id>http://fercho.akb.soy/</id><updated>2025-03-21T02:18:32-05:00</updated><subtitle>HappyHacking!!</subtitle><entry><title>Acceso Remoto en GnuLinux a través de VNC 💻</title><link href="http://fercho.akb.soy/2018/12/vncserver/" rel="alternate"></link><published>2018-12-02T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:fercho.akb.soy,2018-12-02:/2018/12/vncserver/</id><summary type="html">&lt;p&gt;Trabajando con VNC Server y x11vnc para permitir el acceso remoto a una sesión abierta. 💻&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Instalación y Configuración&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Verificar si se encuentra instalado:  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo rpm -q vnc-server&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Si no existe hay que instalar el siguiente paquete:  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo yum install vnc-server&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Crear password VNC para usuarios del sistema.&lt;br&gt;
+Una vez logueado el usuario debera ejecutar:  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vncpasswd&lt;/code&gt;&lt;br&gt;
+El comando crea el directorio &lt;code&gt;~/.vnc&lt;/code&gt; y el archivo &lt;code&gt;passwd&lt;/code&gt;  &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Importante:&lt;/strong&gt; Agregar una contraseña robusta, 
+  porque el algoritmo utilizado es vulnerable.  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Para iniciar VNC en una sesión ya establecida es necesario el paquete x11vnc  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo yum install x11vnc&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Permitir conexión &lt;strong&gt;insegura&lt;/strong&gt; VNC hacia una sesión abierta&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Dentro de la sesión abierta ejecutar lo siguiente:  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;x11vnc -forever -rfbauth ~/.vnc/passwd&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Conexión &lt;strong&gt;insegura&lt;/strong&gt; por Cliente VNC&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Verificar si se encuentra algún cliente instalado:  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo rpm -q vnc&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Si no existe, puedes instalar alguno de los siguiente clientes:  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo yum install vnc&lt;/code&gt;  ó&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yum install remmina&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Configurar en el cliente la sesión VNC a conectarse.  &lt;ul&gt;
+&lt;li&gt;IP del Servidor VNC   &lt;/li&gt;
+&lt;li&gt;Puerto de conexion VNC-Server  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Agregué la conexión no recomendable para poner en conocimiento 
+  que la misma &lt;strong&gt;es insegura&lt;/strong&gt; porque todo el tráfico va en texto plano.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Conexión a través de ssh/x11vnc desde el cliente&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Iniciar la conexión, a través de SSH desde el cliente:  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ssh&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;-L&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5900&lt;/span&gt;:localhost:5900&lt;span class="w"&gt; &lt;/span&gt;usuario@IPdeRed&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;x11vnc -localhost -display :0&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Configurar el Cliente VNC para &lt;em&gt;localhost&lt;/em&gt;.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;URLs&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://wiki.centos.org/es/HowTos/VNC-Server"&gt;VNC-Server CentOs&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://www.karlrunge.com/x11vnc/"&gt;x11vnc&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://www.atareao.es/ubuntu/gestion-remota-con-ubuntu-ssh-y-x11vnc/#"&gt;ssh-y-x11vnc&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://wiki.archlinux.org/index.php/x11vnc"&gt;x11vnc_tutorial&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://es.godaddy.com/help/como-configurar-escritorio-remoto-para-su-servidor-dedicado-linux-centos-o-fedora-6012"&gt;VNC_Server_CentOs&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://askubuntu.com/questions/330983/no-desktop-showing-in-ubuntu-13-04-via-vnc-on-a-vps"&gt;Configuracion_xstartup&lt;/a&gt;  &lt;/p&gt;
+&lt;h2&gt;Consideraciones de Seguridad Informática&lt;/h2&gt;
+&lt;p&gt;He realizado algunas pruebas para agregar SSL al servicio VNC y utilizarla con 
+el cliente VNC Viewer (Real VNC), pero aún tengo algunos errores por lo cual 
+parte de la guía públicada en este post no es segura. Se recomienda hacer uso 
+de VNC a través de ssh/x11vnc&lt;/p&gt;
+&lt;p&gt;Para añadir mayor seguridad a la conexión VNC es necesario agregar reglas de Iptables 
+ó TCPWrappers para permitir una conexión segregada para determinados equipos. 
+También se puede añadir permisos al servicio sshd para controlar que usuarios pueden 
+conectarse a través de &lt;code&gt;ssh/x11vnc&lt;/code&gt; cuando sea necesario.  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;No se recomienda dejar activo el servicio de VNC&lt;/strong&gt; y las configuraciones 
+publicadas en este post se debe utilizar unicamente cuando sea necesario.  &lt;/p&gt;
+&lt;p&gt;Si conocen de algún metodo seguro por favor añadirlo en sus comentarios. 
+Agradezco el tiempo de lectura y las sugerencias para mejorar el post.  &lt;/p&gt;</content><category term="gnu-linux"></category><category term="vnc"></category><category term="x11vnc"></category><category term="remmina"></category><category term="gnulinux"></category><category term="ssh"></category><category term="howto"></category><category term="fedora"></category></entry><entry><title>Comandos prácticos en GnuLinux 🐃🐧</title><link href="http://fercho.akb.soy/2018/10/commandGnuLinux/" rel="alternate"></link><published>2018-10-14T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:fercho.akb.soy,2018-10-14:/2018/10/commandGnuLinux/</id><summary type="html">&lt;p&gt;Listado de comandos de uso práctico en GnuLinux 😎💻&lt;/p&gt;</summary><content type="html">&lt;p&gt;Como lo prometido es deuda, pongo a su disposición una lista de comandos prácticos para la consola de GnuLinux.&lt;br&gt;
+Mi idea no es detallar la funcionalidad de cada comando, sino mostrar una lista practica de los comandos 
+que he recopilado durante mi experiencia de uso del Sistema Operativo.&lt;/p&gt;
+&lt;p&gt;Para detallar que hace cada comando podemos hacer uso de los &lt;strong&gt;man-page&lt;/strong&gt; propios de cada comando utilizando:&lt;br&gt;
+man &lt;em&gt;comando&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;ps&lt;/h2&gt;
+&lt;h4&gt;Para ver los procesos que ocupan más memoria&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ps aux | awk '{print $2, $4, $11}' | sort -k2r | head -n 15&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para sumar la memoria total de todos los procesos httpd&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ps aux | awk '/httpd/ {sum+=$6} END {printf "%dMB\n", sum/1024}'&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Matar un proceso determinado.&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ps aux | grep &amp;lt;something&amp;gt; | awk '{print $2}' | xargs kill&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Matar los procesos de un determinado usuario.&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ps -o pid -u nombreUsuario | xargs kill -1&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;du&lt;/h2&gt;
+&lt;h4&gt;Para visualizar el tamaño por sumatoria de un determinado directorio&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;du -sh /home&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para visualizar el tamaño de las carpetas de la Raíz "/" excepción carpetas del sistema&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;du --max-depth=1 -hx /&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para filtrar directorios que tengan mayor a un tamaño indicado&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;du -h /var/www | awk '$10 ~ ".*M.*" {print $2}'&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;sort&lt;/h2&gt;
+&lt;h4&gt;Ordenación de mayor a menor Usuarios por uid:&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;cat /etc/passwd| sort -t":" -k3nr&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;grep&lt;/h2&gt;
+&lt;h4&gt;Búsqueda de una fecha específica en los logs de PHP&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;grep -E '16-Jun-2015|17-Jun-2015' /var/log/php-errors.log&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Busquedas recursivas&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;grep -R -i -n 'Keyring' * -R&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para copiar los archivos de determinada extensión que coinciden con una búsqueda&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;grep&lt;span class="w"&gt; &lt;/span&gt;--include&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;*.akb&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tcpdump&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;*&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;cut&lt;span class="w"&gt; &lt;/span&gt;-d:&lt;span class="w"&gt; &lt;/span&gt;-f1&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;uniq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;xargs&lt;span class="w"&gt; &lt;/span&gt;cp&lt;span class="w"&gt; &lt;/span&gt;-vt&lt;span class="w"&gt; &lt;/span&gt;/tmp/temporal01/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Lo mismo, pero con el comando find:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;find&lt;span class="w"&gt; &lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;-name&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;*.akb&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-exec&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-H&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tcpdump&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;{}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;cut&lt;span class="w"&gt; &lt;/span&gt;-d:&lt;span class="w"&gt; &lt;/span&gt;-f1&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;uniq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;xargs&lt;span class="w"&gt; &lt;/span&gt;cp&lt;span class="w"&gt; &lt;/span&gt;-vt&lt;span class="w"&gt; &lt;/span&gt;/tmp/temporal01/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;less&lt;/h2&gt;
+&lt;h4&gt;Conservar el resalte de las búsquedas:&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;grep --color=always -i script *html | less -r&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;sed&lt;/h2&gt;
+&lt;h4&gt;Para visualizar archivos de configuración sin comentarios (#) y sin espacios.&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;cat archivo.conf | grep -v -E '^#' | sed -e '/^$/d'&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;awk&lt;/h2&gt;
+&lt;h4&gt;Para imprimir determinada linea de un documento:&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;awk "NR==3" nombreArchivo.txt&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;tr&lt;/h2&gt;
+&lt;h4&gt;Reemplazar las Comillas (") por un Espacio en Blanco, y los punto y comas por el carácter de Tabulación (\t).&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;echo '"Juan";"Pepe";' | tr '";' ' \t'&lt;/code&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Útil para trabajar con Archivos CSV.  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;ls&lt;/h2&gt;
+&lt;h4&gt;Para mostrar los directorios con el "/"&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ls -F&lt;/code&gt;&lt;br&gt;
+&lt;a href="https://unix.stackexchange.com/questions/146802/the-f-option-for-ls"&gt;Referencia ls option F&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Para listar directorios&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ls -d */&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para listar subdirectorios&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ls -d */*/&lt;/code&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si necesitamos seguir profundizando añadimos &lt;code&gt;*/&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;Para mostrar directorios ocultos&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ls -d .*/&lt;/code&gt;&lt;br&gt;
+&lt;a href="http://blockdeubuntu.blogspot.com/2008/12/cmo-listar-slo-directorios-en-el.html"&gt;Referencia ls option d&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Obtener un listado de los ficheros del directorio actual, ordenado de mayor a menor por tamaño de archivo&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ls -l | sort -r +4n&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para listar determinados archivos ordenados por el tamaño de los mismos&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ls&lt;span class="w"&gt; &lt;/span&gt;-al&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-E&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;*.txt|*.log|*.glf|*.hprof|log.bo*|*.trc&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sort&lt;span class="w"&gt; &lt;/span&gt;-n&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;-k&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;more
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;cp&lt;/h2&gt;
+&lt;h4&gt;Copiar Archivos desde un listado txt&lt;/h4&gt;
+&lt;p&gt;Para copiar un listado de archivos que se encuentran en un archivo txt, sin necesidad de conservar los permisos:&lt;br&gt;
+&lt;code&gt;cat listadoArchivosCommit.txt | xargs cp -vt /tmp/TestCopia&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Para copiar archivos que están en un listado, pero conservando los permisos:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;read&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;line&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;cp&lt;span class="w"&gt; &lt;/span&gt;-vrp&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;../akb_mkdocs/&lt;span class="nv"&gt;$line&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;&lt;span class="w"&gt; &lt;/span&gt;listadoArchivosCommit.tmp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;mv&lt;/h2&gt;
+&lt;h4&gt;Para mover Archivos desde un listado txt&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;file&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;listoffiles&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;mv&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/path/de/destino&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;xargs -a file_list.txt mv -t /path/de/destino&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para renombrar archivos cuyo nombre contengan espacios en blanco&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;FILE&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;*.wav&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;NEWFILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sed&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/ /_/g&amp;#39;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;mv&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$NEWFILE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;find&lt;/h2&gt;
+&lt;p&gt;Comando utilizado para buscar archivos en GnuLinux, 
+existen distintas variantes del mismo para realizar diferentes tareas:&lt;/p&gt;
+&lt;h4&gt;Para buscar algun archivo utilizando parámetros de nombre y con texto en particular&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find ./ -type f -name '*.doc*' | grep -i project&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para Cambiar los permisos de SOLO los DIRECTORIOS de un sitio en especifico&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find ./certificate -type d -exec chmod 0750 {} \;&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para Cambiar los permisos de SOLO los ARCHIVOS de un sitio en especifico&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find ./certificate ! -type d -exec chmod 0640 {} \;&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para Borrar los archivos con algun parámetro especial de búsqueda&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find ./ -name '*06162015*' -exec rm -rf {} \;&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para listar los archivos que fueron creados desde hace 30 días&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;find&lt;span class="w"&gt; &lt;/span&gt;./&lt;span class="w"&gt; &lt;/span&gt;-type&lt;span class="w"&gt; &lt;/span&gt;f&lt;span class="w"&gt; &lt;/span&gt;-mmin&lt;span class="w"&gt; &lt;/span&gt;-43200&lt;span class="w"&gt; &lt;/span&gt;-exec&lt;span class="w"&gt; &lt;/span&gt;ls&lt;span class="w"&gt; &lt;/span&gt;-lt&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;{}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;**&lt;span class="w"&gt; &lt;/span&gt;Archivos&lt;span class="w"&gt; &lt;/span&gt;menores&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;30&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Dias&lt;span class="w"&gt; &lt;/span&gt;**&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;30&lt;/span&gt;*&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;24&lt;/span&gt;*60&lt;span class="o"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Para copiar determinados archivos hacia otro directorio utilizando &lt;strong&gt;cp&lt;/strong&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;find&lt;span class="w"&gt; &lt;/span&gt;./&lt;span class="w"&gt; &lt;/span&gt;-type&lt;span class="w"&gt; &lt;/span&gt;f&lt;span class="w"&gt; &lt;/span&gt;-mmin&lt;span class="w"&gt; &lt;/span&gt;-43200&lt;span class="w"&gt; &lt;/span&gt;-exec&lt;span class="w"&gt; &lt;/span&gt;/usr/bin/cp&lt;span class="w"&gt; &lt;/span&gt;-rp&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;{}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;../tmp/&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Para eliminar los backups con más de 02 dias (48 horas)&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -mtime +1 -delete&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para mostrar o listar los directorios vacíos a partir del directorio actual.&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -empty -type d&lt;/code&gt;  &lt;/p&gt;
+&lt;h4&gt;Para contar los archivos pero solo en carpetas dos niveles por debajo&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -maxdepth 2 -type f | wc -l&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para contar archivos de forma recursiva ilimitada&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -type f | wc -l&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para contar directorios de forma recursiva ilimitada&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -type d | wc -l&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para contar enlaces de forma recursiva ilimitada&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -type l | wc -l&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para contar archivos y carpetas de forma recursiva&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . | wc -l&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para contar archivos con una extensión determinada&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -type f -iname “*.php” | wc -l&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para listar archivos ocultos de determinado directorio&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find . -type d -iname ".*" -ls&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Para cambiar texto dentro de algún tipo de archivo en particular&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;find&lt;span class="w"&gt; &lt;/span&gt;/test/&lt;span class="w"&gt; &lt;/span&gt;-name&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;*.txt&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-print&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;xargs&lt;span class="w"&gt; &lt;/span&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;s/SYSADMIT/--SYSADMIT--/g&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Para buscar archivos mayores a 1024MB&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;find ./ -size +1024M -exec /bin/du -sh {} \;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://unix.stackexchange.com/questions/92346/why-does-find-mtime-1-only-return-files-older-than-2-days"&gt;unix_stackexchange_find&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://www.pedroventura.com/linux/contar-todos-los-archivos-existente-en-un-directorio-en-linux/"&gt;Contar_Files_Con_Find&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://www.sysadmit.com/2015/07/linux-reemplazar-texto-en-archivos-con-sed.html"&gt;Find_con_sed&lt;/a&gt;  &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;curl&lt;/h2&gt;
+&lt;h4&gt;Para resumir las descargas a través de curl&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;ec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;18&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$ec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-eq&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;18&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/usr/bin/curl&lt;span class="w"&gt; &lt;/span&gt;-O&lt;span class="w"&gt; &lt;/span&gt;-C&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://www.example.com/big-archive.zip&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;ec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$?&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;ln&lt;/h2&gt;
+&lt;h4&gt;Crear enlace simbólico&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ln origen destino&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;sudo ln -s /usr/bin/csvlook-3.5 /usr/bin/csvlook&lt;/code&gt;  &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;isoinfo&lt;/h2&gt;
+&lt;h4&gt;Para montar imagen Linux si solo quieres listar su contenido.&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ìsoinfo -l -i imagen.iso&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Al presente listado hacen falta muchos más comandos... pero eso es lo bonito de GnuLinux, 
+que nunca terminamos de aprender si puedes recomendar algún comando útil que haga falta 
+a este listado agrégalo en los comentarios.&lt;/p&gt;
+&lt;p&gt;Espero sea útil este tipo de post. Agradezco su tiempo de lectura 😃&lt;/p&gt;</content><category term="gnu-linux"></category><category term="terminal"></category><category term="gnulinux"></category><category term="fedora"></category></entry><entry><title>Usando DotFiles 📝</title><link href="http://fercho.akb.soy/2017/12/dotfiles/" rel="alternate"></link><published>2017-12-17T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:fercho.akb.soy,2017-12-17:/2017/12/dotfiles/</id><summary type="html">&lt;p&gt;Trabajando con Dotfiles, aprende a agrupar los archivos de configuración ocultos en un solo directorio.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Instalación&lt;/h2&gt;
+&lt;h3&gt;Tmux&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;yum install tmux.x86_64&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Instalación Vim&lt;/h3&gt;
+&lt;p&gt;Prerequisitos para vim:&lt;br&gt;
+  * &lt;code&gt;yum install ctags&lt;/code&gt;                                                         &lt;br&gt;
+  * &lt;code&gt;yum install vim.x86_64&lt;/code&gt;                                                      &lt;/p&gt;
+&lt;p&gt;Archivos de Configuracion &lt;br&gt;
+  * &lt;code&gt;vim ~/.tmux.conf&lt;/code&gt;                                                          &lt;br&gt;
+  * &lt;code&gt;vim ~/.vimrc&lt;/code&gt;                                                                &lt;/p&gt;
+&lt;h3&gt;Instalación Zsh&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;yum install zsh&lt;/code&gt;                                                                                &lt;br&gt;
+Clonamos el proyecto de GitHub:                         &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git clone git://github.com/robbyrussell/oh-my-zsh.git&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Editamos el archivo install.sh, comentamos las siguiente linea.&lt;br&gt;
+  * &lt;code&gt;#chsh -s $(grep /zsh$ /etc/shells | tail -1)&lt;/code&gt;                               &lt;/p&gt;
+&lt;p&gt;Ejecutamos el archivo de instalación
+  * &lt;code&gt;bash tools/install.sh&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;Configuración Manual Dotfiles&lt;/h2&gt;
+&lt;h3&gt;Tmux .dotfiles&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mkdir ~/.dotfiles/tmux&lt;/code&gt;                                                      &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd ~&lt;/code&gt;                                                                        &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ln -s ~/.dotfiles/tmux/.tmux.conf .&lt;/code&gt;                                         &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Vim .dotfiles&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mkdir ~/.dotfiles/vim&lt;/code&gt;                                                       &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cp -rp ~/.vimrc ~/.dotfiles/vim/&lt;/code&gt;                                            &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd ~&lt;/code&gt;                                                                        &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ln -s ~/.dotfiles/vim/.vimrc .&lt;/code&gt;                                              &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Zsh .dotfiles&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mkdir ~/.dotfiles/oh-my-zsh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd ~/.dotfiles/oh-my-zsh&lt;/code&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Asignamos el valor a la variable ZSH = ~/.dotfiles/oh-my-zsh                    &lt;/p&gt;
+&lt;p&gt;En los archivos:                                                   &lt;br&gt;
+  * templates/zshrc.zsh-template&lt;br&gt;
+  * tools/install.sh                                                                &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;Configuración Automática Dotfiles&lt;/h2&gt;
+&lt;p&gt;Creamos el directorio &lt;code&gt;.dotfiles&lt;/code&gt;                                             &lt;br&gt;
+  * &lt;code&gt;mkdir ~/.dotfiles&lt;/code&gt;&lt;br&gt;
+  * &lt;code&gt;cd .dotfiles&lt;/code&gt;&lt;br&gt;
+  * &lt;code&gt;git clone user@serverGit:akb_dotfiles.git&lt;/code&gt;&lt;br&gt;
+  * &lt;code&gt;ln -s .dotfiles/vim/.vimrc .vimrc&lt;/code&gt;                                    &lt;br&gt;
+  * &lt;code&gt;ln -s .dotfiles/tmux/.tmux.conf .tmux_conf&lt;/code&gt;&lt;br&gt;
+  * &lt;code&gt;ln -s .dotfiles/oh-my-zsh/.zshrc .zshrc&lt;/code&gt;  &lt;/p&gt;
+&lt;h3&gt;Instalación Plugins Vim&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vim .vimrc&lt;/code&gt;                                                                  &lt;/li&gt;
+&lt;li&gt;Dentro de vim Ejecutar el siguiente comando &lt;code&gt;:PlugInstall&lt;/code&gt;   &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:bd!&lt;/code&gt; &amp;gt; Salir del archivo sin grabarlo en bash  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para entender de mejor manera los archivos &lt;strong&gt;.dotfiles&lt;/strong&gt;, recomiendo 
+revisar los archivos publicados por &lt;a href="https://github.com/danirod/dotfiles"&gt;Makigas&lt;/a&gt; en Github.&lt;/p&gt;</content><category term="gnu-linux"></category><category term="tmux"></category><category term="vim"></category><category term="zsh"></category><category term="akb"></category><category term="dotfiles"></category><category term="howto"></category></entry></feed>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Blog | AkB - productividad</title><link href="http://fercho.akb.soy/" rel="alternate"></link><link href="http://fercho.akb.soy/feeds/productividad.atom.xml" rel="self"></link><id>http://fercho.akb.soy/</id><updated>2025-03-21T02:18:32-05:00</updated><subtitle>HappyHacking!!</subtitle><entry><title>Usando GTD con Todo.txt 📝</title><link href="http://fercho.akb.soy/2017/12/use_todotxt/" rel="alternate"></link><published>2017-12-16T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:fercho.akb.soy,2017-12-16:/2017/12/use_todotxt/</id><summary type="html">&lt;p&gt;Getting Things Done con Todo.txt, formatos de uso en diferentes aplicaciones para terminal, entorno gráfico y dispositivos Android.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Porque usarlo?&lt;/h2&gt;
+&lt;p&gt;Si te gusta la simplicidad este &lt;a href="https://todotxt.org/"&gt;Todo.txt&lt;/a&gt; es tu gestor de actividades (&lt;a href="https://es.wikipedia.org/wiki/Getting_Things_Done"&gt;GTD&lt;/a&gt;: Getting Things Done). Es un formato diseñado por &lt;a href="https://ginatrapani.org/"&gt;Gina Trapani&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;El formato de texto simple, puede ser usado en cualquier Sistema Operativo y ahí esta lo grandioso de este sistema.&lt;/p&gt;
+&lt;p&gt;Para entender este sistema debes tener en cuenta estos tres ejes:&lt;br&gt;
+  * Prioridad&lt;br&gt;
+  * Proyecto&lt;br&gt;
+  * Contexto  &lt;/p&gt;
+&lt;h2&gt;Reglas del formato todo.txt&lt;/h2&gt;
+&lt;p&gt;El objetivo del formato es que tiene que ser fácilmente leído. Es un simple archivo de texto donde se usan metadatos como prioridad, proyectos, contexto, creación o completado. Su extructura es variable, pero necesitamos darle un formato para los proyectos (ej. +Blog), contextos (@móvil, @home) y prioridad (como (A) o (B)).&lt;/p&gt;
+&lt;p&gt;El &lt;a href="https://hipertextual.com/archivo/2014/10/todotxt/"&gt;blog&lt;/a&gt; que escribió anderraso, me ayudo a entender el uso del TodoTxt, por ello citaré sus ejemplo y reglas de uso:  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;(A) recargar la tarjeta del bus (B) elegir con el grupo de Telegram el día en el que haremos el trabajo @móvil +TrabajoClase Instalar el programa estadístico R +TrabajoClase @supermercado comprar patatas para ver la peli&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Regla 1.&lt;/h3&gt;
+&lt;p&gt;Si existe prioridad SIEMPRE aparece primero en la lista. La prioridad es una letra de la A a la Z entre paréntesis y debe aparecer al principio de la línea.&lt;/p&gt;
+&lt;h3&gt;Regla 2.&lt;/h3&gt;
+&lt;p&gt;Si no hay prioridad, la fecha de creación aparece primero en la tarea. El formato es (AAAA-MM-DD) y aparecerá al principio de la tarea, nunca al final.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2014-10-21 aprender formato de lista +TodoTxt (A) 2014-10-21 Comprar regalo de cumpleaños para mi hermano @CentroComercial&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Nota: hay aplicaciones que reconocen el formato t:2014-10-21(umbral en el que se puede hacer la tarea) y due:2014-10-21 (fecha límite), y estas no tienen porqué ir al principio.&lt;/p&gt;
+&lt;h3&gt;Regla 3.&lt;/h3&gt;
+&lt;p&gt;Los proyectos y contextos aparecen donde quieras siempre que sea después de la prioridad y la fecha.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;(A) Apuntarme a una carrera 10K @fitness +DesarrolloPersonal los emails@nocuentan.como contextos las sumas 2+2 no cuentan como proyectos&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Regla 4.&lt;/h3&gt;
+&lt;p&gt;Las tareas completadas aparecen con una x al principio, separada de un espacio.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;x Defender el software libre&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Regla 5.&lt;/h3&gt;
+&lt;p&gt;Si ponemos la fecha en la que hemos completado una tarea va después de la x.  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;x 2014-10-21 2014-10-19 ordenar&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;Mi modo de Uso&lt;/h2&gt;
+&lt;h3&gt;Prioridad&lt;/h3&gt;
+&lt;p&gt;Las tareas deben aparecer arriba para verse mejor. En Todo.txt las prioridades se definen desde la:  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A-Z&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Proyecto&lt;/h3&gt;
+&lt;p&gt;Para hacer frente a un proyecto es conveniente dividirlo en tareas más pequeñas (micro-proyectos).  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;+PortalWeb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+Trabajo&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+DSI_Lab&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+Personal&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+Migracion&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+Respaldo&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Contexto&lt;/h3&gt;
+&lt;p&gt;En mi caso utilizó el lugar o la situación en la cual realizaré la tarea. Por ejemplo:  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;@oficina&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@celular&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@online&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@offline&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@casa&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@otroLugar&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Tipo de Acción&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;#Proximo&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#Proyecto&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#EnEspera&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#AlgunDia&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;Formatos&lt;/h2&gt;
+&lt;p&gt;Base:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Prioridad&lt;span class="w"&gt; &lt;/span&gt;REM&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Fecha_Año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;AT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;HoraDeInicio&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MSG&lt;span class="w"&gt; &lt;/span&gt;MensajeActividad&lt;span class="w"&gt; &lt;/span&gt;@Contexto&lt;span class="w"&gt; &lt;/span&gt;+Proyecto&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;#TipoDeAccion TO (HoraDeFin)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Para utilizar por Terminal:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;t&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;fechaInicio&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;AT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Hora:Minuto&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MSG&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;mensaje&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;@contexto&lt;span class="w"&gt; &lt;/span&gt;+Proyecto&lt;span class="w"&gt; &lt;/span&gt;TO&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Hora:Minuto&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;t:&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;due:&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\#&lt;/span&gt;TipoDeAccion&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Para utilizar en el Celular:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;AT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Hora:Minuto&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MSG&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;mensaje&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;@contexto&lt;span class="w"&gt; &lt;/span&gt;+Proyecto&lt;span class="w"&gt; &lt;/span&gt;TO&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Hora:Minuto&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;t:&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;due:&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;#TipoDeAccion`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Para utilizar en el QTodoTxt:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;fechaInicio&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;AT&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Hora:Minuto&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MSG&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;mensaje&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;@contexto&lt;span class="w"&gt; &lt;/span&gt;+Proyecto&lt;span class="w"&gt; &lt;/span&gt;TO&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;Hora:Minuto&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;t:&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;due:&lt;span class="o"&gt;(&lt;/span&gt;año/mes/dia&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;#TipoDeAccion`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Adicionales a las tareas&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Para futuras tareas, &lt;code&gt;t:(año/mes/dia)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Para establecer caducidad de tareas, &lt;code&gt;due:(año/mes/dia)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En mi caso yo las agrego después del &lt;strong&gt;+Proyecto&lt;/strong&gt; y anterior al &lt;strong&gt;#TipoDeAccion&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;</content><category term="productividad"></category><category term="gnulinux"></category><category term="gtd"></category><category term="todotxt"></category><category term="howto"></category></entry><entry><title>GTD con Todo.txt 📝</title><link href="http://fercho.akb.soy/2017/11/todotxt/" rel="alternate"></link><published>2017-11-05T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:fercho.akb.soy,2017-11-05:/2017/11/todotxt/</id><summary type="html">&lt;p&gt;Todo.txt es una forma sencilla de almacenar tus tareas utilizando la metodología Getting Things Done para la gestión de actividades.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Todo.txt&lt;/h1&gt;
+&lt;p&gt;Para trabajar con todo.txt, debemos leer acerca de su funcionamiento.  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://computers.tutsplus.com/tutorials/how-to-manage-your-tasks-with-todotxt--cms-20293"&gt;How to Manage Your Tasks with Todo.txt&lt;/a&gt; by Adrián Perales  &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://eltelardelgeek.com/2013/12/13/todo-txt-simple-y-pequena-maravilla-para-gestionar-tareas/"&gt;todo-txt-simple-y-pequena-maravilla&lt;/a&gt; by Zach LeBar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Instalación&lt;/h2&gt;
+&lt;h3&gt;Clonar repositorio GitHub de GinaTrapani&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;git clone https://github.com/ginatrapani/todo.txt-cli.git&lt;/li&gt;
+&lt;li&gt;cd todo.txt-cli&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Parametrizacion&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;vim .bashrc                                                                   &lt;/li&gt;
+&lt;li&gt;Agregar las siguientes lineas:                                                &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;### ToDo.txt                                                                    &lt;/span&gt;
+&lt;span class="nb"&gt;alias&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;~/ProyectosGitHub_FedoraDell/todo.txt-cli/todo.sh&amp;#39;&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;~/ProyectosGitHub_FedoraDell/todo.txt-cli/todo_completion&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;~/ProyectosGitHub_FedoraDell/todo.txt-cli/todo_completion
+&lt;span class="k"&gt;fi&lt;/span&gt;&lt;span class="w"&gt;                                                                              &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Comandos de Uso&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Agregar actividad o tarea: &lt;code&gt;t a "TextoDeLaTarea"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Poner una fecha a la actividad: &lt;code&gt;t prepend No_DeTarea "2012-09-22"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Asignar un proyecto: &lt;code&gt;t append No_DeTarea "+Proyecto"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Asignar un contexto: &lt;code&gt;t append No_DeTarea "@Contexto"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Añadir Prioridad: &lt;code&gt;t p NoDeItem_DadoPor_t_ls LetraDePrioridad_Entre_AZ&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Listar actividades: &lt;code&gt;t ls&lt;/code&gt;                                               &lt;/li&gt;
+&lt;li&gt;Mostrar lista de tareas filtradas: &lt;code&gt;t list TextoQueQueremosFiltrar&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Listar las Prioridades: &lt;code&gt;t lsp&lt;/code&gt;                                          &lt;/li&gt;
+&lt;li&gt;Listar todas las actividades: &lt;code&gt;t lsa&lt;/code&gt;                                    &lt;/li&gt;
+&lt;li&gt;Finalizar una tarea: &lt;code&gt;t do NoDeItem_DadoPor_t_ls&lt;/code&gt;                        &lt;/li&gt;
+&lt;li&gt;Listar Proyectos(+): &lt;code&gt;t lsprj&lt;/code&gt;                                           &lt;/li&gt;
+&lt;li&gt;Listar Contexto(@): &lt;code&gt;t lsc&lt;/code&gt;                                              &lt;/li&gt;
+&lt;li&gt;Listar archivos del Programa todo.txt: &lt;code&gt;t lf&lt;/code&gt;                            &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Cliente OwnCloud&lt;/h1&gt;
+&lt;h2&gt;Instalacion&lt;/h2&gt;
+&lt;h3&gt;Agregar Repositorio e instalar&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;*&lt;span class="w"&gt; &lt;/span&gt;dnf&lt;span class="w"&gt; &lt;/span&gt;config-manager&lt;span class="w"&gt; &lt;/span&gt;--add-repo&lt;span class="w"&gt; &lt;/span&gt;http://download.opensuse.org/repositories/isv:ownCloud:desktop/Fedora_25/isv:ownCloud:desktop.repo
+*&lt;span class="w"&gt; &lt;/span&gt;dnf&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;owncloud-client
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Parametrización&lt;/h3&gt;
+&lt;p&gt;Creamos el directorio que se sincronizará con OwnCloud.&lt;br&gt;
+* &lt;code&gt;mkdir Sync_OwnCloud&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Mover los archivos &lt;code&gt;todo.txt done.txt report.txt&lt;/code&gt; al directorio creado anteriormente. &lt;br&gt;
+* &lt;code&gt;mv todo.txt done.txt report.txt ./Sync_OwnCloud/&lt;/code&gt;  &lt;/p&gt;
+&lt;p&gt;Crear enlaces simbolicos para &lt;strong&gt;todo.txt&lt;/strong&gt;  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ln -s ./Sync_OwnCloud/todo.txt ./&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ln -s ./Sync_OwnCloud/done.txt ./&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ln -s ./Sync_OwnCloud/report.txt ./&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;QTodoTxt&lt;/h1&gt;
+&lt;h2&gt;Instalacion&lt;/h2&gt;
+&lt;h3&gt;Prerequisitos&lt;/h3&gt;
+&lt;p&gt;Para Ubuntu:&lt;br&gt;
+    * &lt;code&gt;apt-get install python3-pyside&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;apt-get install python3-pyqt5&lt;/code&gt;                                               &lt;br&gt;
+    * &lt;code&gt;apt-get install python3-dateutil&lt;/code&gt;  &lt;/p&gt;
+&lt;p&gt;Para Fedora:              &lt;br&gt;
+    * &lt;code&gt;yum install python3-qt5&lt;/code&gt;&lt;br&gt;
+    * &lt;code&gt;yum install python3-dateutil&lt;/code&gt;  &lt;/p&gt;
+&lt;h3&gt;Clonar Repositorio Github&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;git clone https://github.com/QTodoTxt/QTodoTxt.git                            &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Enlace simbólico QTodoTxt&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Reconocer el Path del perfil de usuario.  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;echo $PATH&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ir al directorio donde crearemos el enlace directo a la aplicación.  &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cd /usr/local/bin&lt;/code&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Crear el enlace directo&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ln -s pathBinarioQtodotxt ./&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Bitacora&lt;/h2&gt;
+&lt;h3&gt;Uso&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;t&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;REM&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2017&lt;/span&gt;/01/03&lt;span class="w"&gt; &lt;/span&gt;Configuracion&lt;span class="w"&gt; &lt;/span&gt;Inicial&lt;span class="w"&gt; &lt;/span&gt;FedoraDellVM&lt;span class="w"&gt; &lt;/span&gt;@oficina&lt;span class="w"&gt; &lt;/span&gt;+Personal&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;#MigracionDell&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;REM&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2017&lt;/span&gt;/01/03&lt;span class="w"&gt; &lt;/span&gt;Configuracion&lt;span class="w"&gt; &lt;/span&gt;Inicial&lt;span class="w"&gt; &lt;/span&gt;FedoraDellVM&lt;span class="w"&gt; &lt;/span&gt;@oficina&lt;span class="w"&gt; &lt;/span&gt;+Personal&lt;span class="w"&gt;          &lt;/span&gt;
+TODO:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;added.&lt;span class="w"&gt;                                                                  &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;t&lt;span class="w"&gt; &lt;/span&gt;ls&lt;span class="w"&gt;                                                     &lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;REM&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2017&lt;/span&gt;/01/03&lt;span class="w"&gt; &lt;/span&gt;Configuracion&lt;span class="w"&gt; &lt;/span&gt;Inicial&lt;span class="w"&gt; &lt;/span&gt;FedoraDellVM&lt;span class="w"&gt; &lt;/span&gt;@oficina&lt;span class="w"&gt; &lt;/span&gt;+Personal&lt;span class="w"&gt;          &lt;/span&gt;
+--&lt;span class="w"&gt;                                                                              &lt;/span&gt;
+TODO:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;tasks&lt;span class="w"&gt; &lt;/span&gt;shown&lt;span class="w"&gt;                                                        &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$
+...
+
+...
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;todo.txt&lt;span class="w"&gt;                                  &lt;/span&gt;
+REM&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2017&lt;/span&gt;/01/03&lt;span class="w"&gt; &lt;/span&gt;Configuracion&lt;span class="w"&gt; &lt;/span&gt;Inicial&lt;span class="w"&gt; &lt;/span&gt;FedoraDellVM&lt;span class="w"&gt; &lt;/span&gt;@oficina&lt;span class="w"&gt; &lt;/span&gt;+Personal&lt;span class="w"&gt;            &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h3&gt;Parametrización OwnCloud&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;mkdir&lt;span class="w"&gt; &lt;/span&gt;Sync_OwnCloud&lt;span class="w"&gt;                                                                                                                                                                            &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;mv&lt;span class="w"&gt; &lt;/span&gt;todo.txt&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;.txt&lt;span class="w"&gt; &lt;/span&gt;report.txt&lt;span class="w"&gt; &lt;/span&gt;./Sync_OwnCloud/
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="w"&gt;                                           &lt;/span&gt;
+~/ProyectosGitHub_FedoraDell/todo.txt-cli
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;ln&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;./Sync_OwnCloud/todo.txt&lt;span class="w"&gt; &lt;/span&gt;./&lt;span class="w"&gt;             &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;ln&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;./Sync_OwnCloud/done.txt&lt;span class="w"&gt; &lt;/span&gt;./&lt;span class="w"&gt;             &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;ln&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;./Sync_OwnCloud/report.txt&lt;span class="w"&gt; &lt;/span&gt;./&lt;span class="w"&gt;           &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;todo.txt-cli&lt;span class="o"&gt;]&lt;/span&gt;$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h3&gt;Enlace simbolico QTodoTxt&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$
+
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;
+/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/usuario/.local/bin:/home/usuario/bin
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;~&lt;span class="o"&gt;]&lt;/span&gt;$
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;bin&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/usr/local/bin
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;bin&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;
+/usr/local/bin
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;bin&lt;span class="o"&gt;]&lt;/span&gt;$
+
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;bin&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;su&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ln -s ~/ProyectosGitHub_FedoraDell/QTodoTxt/bin/qtodotxt ./&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;usuario@localhost&lt;span class="w"&gt; &lt;/span&gt;bin&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;ls&lt;span class="w"&gt; &lt;/span&gt;-l
+total&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;
+lrwxrwxrwx.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;root&lt;span class="w"&gt; &lt;/span&gt;root&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;92&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;feb&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="m"&gt;7&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;:26&lt;span class="w"&gt; &lt;/span&gt;qtodotxt&lt;span class="w"&gt; &lt;/span&gt;-&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/ProyectosGitHub_FedoraDell/QTodoTxt/bin/qtodotxt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="productividad"></category><category term="gnulinux"></category><category term="fedora"></category><category term="gtd"></category><category term="todotxt"></category><category term="howto"></category></entry></feed>
