@@ -1,6 +1,6 @@
 RewriteEngine on
 Options -Indexes
-RewriteCond %{http_host} ^www\.akb\.soy\fercho[nc]
+RewriteCond %{http_host} ^www\.akb\.soy\blog[nc]
 RewriteRule ^(.*)$ http://gh.akb.soy/$1 [r=301,nc]
 
 RewriteCond %{HTTPS} !=on                                                          
