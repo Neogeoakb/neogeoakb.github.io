@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Blog | AkB</title><link href="http://blog.akb.soy/" rel="alternate"></link><link href="http://blog.akb.soy/feeds/all-es.atom.xml" rel="self"></link><id>http://blog.akb.soy/</id><updated>2025-03-21T02:18:32-05:00</updated><subtitle>HappyHacking!!</subtitle><entry><title>Acceso Remoto en GnuLinux a través de VNC 💻</title><link href="http://blog.akb.soy/2018/12/vncserver/" rel="alternate"></link><published>2018-12-02T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2018-12-02:/2018/12/vncserver/</id><summary type="html">&lt;p&gt;Trabajando con VNC Server y x11vnc para permitir el acceso remoto a una sesión abierta. 💻&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Instalación y Configuración&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Blog | AkB</title><link href="http://blog.akb.soy/" rel="alternate"></link><link href="http://blog.akb.soy/feeds/all-es.atom.xml" rel="self"></link><id>http://blog.akb.soy/</id><updated>2025-04-16T00:20:16-05:00</updated><subtitle>HappyHacking!!</subtitle><entry><title>Hola Mundo 3.0 😎✌️</title><link href="http://blog.akb.soy/2024/11/helloWorldv3.0/" rel="alternate"></link><published>2024-11-01T00:00:00-05:00</published><updated>2025-04-16T00:20:16-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2024-11-01:/2024/11/helloWorldv3.0/</id><summary type="html">&lt;p&gt;De vuelta al Ruedo! 🤓&lt;/p&gt;</summary><content type="html">&lt;p&gt;Buen día con todos!!&lt;/p&gt;
+&lt;p&gt;Tras varios buenos y malos momentos hoy regreso al blog con muchos aprendizajes 
+y buena vibra para compartir con todos ustedes.  &lt;/p&gt;
+&lt;p&gt;Durante este tiempo he formado parte de varios equipos de trabajo donde la exigencia 
+y excelencia técnica eran fundamentales, por lo cual entregué todo mi tiempo y 
+energía para el cumplimiento de grandes proyectos que fortalecieron mis conocimientos 
+técnicos y me permitieron tener nuevos aprendizajes entorno a la gestión y liderazgo.  &lt;/p&gt;
+&lt;p&gt;Un sueño que estuvo en el tintero por mucho tiempo hoy ya es una realidad.  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Akb Kompany&lt;/strong&gt; como marca empresarial surge de mi pasión por los bytes y el amor 
+por el arte, elementos que son pieza clave para el desarrollo de la sociedad 
+y de las personas.  &lt;/p&gt;
+&lt;p&gt;Este recorrido ha sido interesante porque ahora conozco varios componentes que 
+integran un sistema e inclusive experimento con ellos.  &lt;/p&gt;
+&lt;p&gt;Como marca empresarial ofrecemos servicios de consultoría en tecnologías de la 
+información que tienen como base la seguridad informática 
+&lt;em&gt;área que ha sido mi motor de aprendizaje durante mucho tiempo&lt;/em&gt;.  &lt;/p&gt;
+&lt;p&gt;Gracias a las personas que me han acompañado en este proceso, transitar con 
+ustedes este camino fue fundamental para llegar a este momento.  &lt;/p&gt;
+&lt;p&gt;Surupa!! #HappyHacking #AkbKompany &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;AkB&lt;/strong&gt;  &lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="Personal"></category><category term="akb"></category></entry><entry><title>Acceso Remoto en GnuLinux a través de VNC 💻</title><link href="http://blog.akb.soy/2018/12/vncserver/" rel="alternate"></link><published>2018-12-02T00:00:00-05:00</published><updated>2025-03-21T02:18:32-05:00</updated><author><name>fercho</name></author><id>tag:blog.akb.soy,2018-12-02:/2018/12/vncserver/</id><summary type="html">&lt;p&gt;Trabajando con VNC Server y x11vnc para permitir el acceso remoto a una sesión abierta. 💻&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Instalación y Configuración&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;Verificar si se encuentra instalado:  &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;sudo rpm -q vnc-server&lt;/code&gt;  &lt;/li&gt;
