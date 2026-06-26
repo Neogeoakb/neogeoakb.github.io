@@ -5,442 +5,442 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml"
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>http://fercho.akb.soy/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2017/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/2017/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2017/09/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/2017/09/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2017/09/helloWorld/</loc>
+<loc>http://blog.akb.soy/2017/09/helloWorld/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2017/09/virtualenv/</loc>
+<loc>http://blog.akb.soy/2017/09/virtualenv/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2017/10/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/2017/10/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2017/10/virtualBox-gnulinux/</loc>
+<loc>http://blog.akb.soy/2017/10/virtualBox-gnulinux/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2017/11/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/2017/11/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2017/11/todotxt/</loc>
+<loc>http://blog.akb.soy/2017/11/todotxt/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2017/11/virtualBox-tips/</loc>
+<loc>http://blog.akb.soy/2017/11/virtualBox-tips/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2017/12/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/2017/12/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2017/12/dotfiles/</loc>
+<loc>http://blog.akb.soy/2017/12/dotfiles/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2017/12/use_todotxt/</loc>
+<loc>http://blog.akb.soy/2017/12/use_todotxt/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2018/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/2018/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2018/02/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/2018/02/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2018/02/git-tips/</loc>
+<loc>http://blog.akb.soy/2018/02/git-tips/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2018/10/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/2018/10/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2018/10/commandGnuLinux/</loc>
+<loc>http://blog.akb.soy/2018/10/commandGnuLinux/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2018/10/helloWorldv2.0/</loc>
+<loc>http://blog.akb.soy/2018/10/helloWorldv2.0/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2018/12/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/2018/12/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2018/12/vncserver/</loc>
+<loc>http://blog.akb.soy/2018/12/vncserver/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2024/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/2024/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2024/11/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/2024/11/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/2024/11/helloWorldv3.0/</loc>
+<loc>http://blog.akb.soy/2024/11/helloWorldv3.0/</loc>
 <lastmod>2025-04-16T00:20:16-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/archive/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/archive/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/author/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/author/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/author/fercho/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/author/fercho/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/author/fercho/page/2/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/author/fercho/page/2/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/category/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/category/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/category/git/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/category/git/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/category/gnu-linux/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/category/gnu-linux/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/category/personal/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/category/personal/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/category/productividad/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/category/productividad/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/category/python/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/category/python/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/category/virtualizacion/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/category/virtualizacion/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/page/2/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/page/2/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/pages/about-site/</loc>
+<loc>http://blog.akb.soy/pages/about-site/</loc>
 <lastmod>2026-06-26T00:05:58-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/pages/contact-akb/</loc>
+<loc>http://blog.akb.soy/pages/contact-akb/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/pages/cv/</loc>
+<loc>http://blog.akb.soy/pages/cv/</loc>
 <lastmod>2025-03-21T02:18:32-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/akb/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/akb/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/bienvenida/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/bienvenida/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/dotfiles/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/dotfiles/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/fedora/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/fedora/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/git/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/git/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/gnulinux/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/gnulinux/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/gnulinux/page/2/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/gnulinux/page/2/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/gtd/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/gtd/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/howto/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/howto/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/howto/page/2/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/howto/page/2/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/python/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/python/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/remmina/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/remmina/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/ssh/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/ssh/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/terminal/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/terminal/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/tmux/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/tmux/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/todotxt/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/todotxt/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/vim/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/vim/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/virtualbox/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/virtualbox/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/virtualenv/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/virtualenv/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/virtualenvwrapper/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/virtualenvwrapper/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/vnc/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/vnc/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/x11vnc/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/x11vnc/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://fercho.akb.soy/tag/zsh/</loc>
-<lastmod>2026-06-26T14:08:10-00:00</lastmod>
+<loc>http://blog.akb.soy/tag/zsh/</loc>
+<lastmod>2026-06-26T14:12:57-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
